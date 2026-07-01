@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Feedback – KI-Klausurtraining</title>
+<style>
+:root {
+  --deep:    #14394b;
+  --teal:    #1d5f78;
+  --teal-lt: #2779a0;
+  --green:   #2f7d5b;
+  --ice:     #eaf4f8;
+  --sage:    #eaf4ee;
+  --amber:   #fff4dd;
+  --muted:   #4d6374;
+  --line:    #ccd9e0;
+  --body:    #1a2c38;
+  --offwhite:#f5f8fb;
+  --white:   #ffffff;
+  --r1: #c0392b;
+  --r2: #d4830a;
+  --r3: #7d7d7d;
+  --r4: #2779a0;
+  --r5: #2f7d5b;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: Calibri, 'Segoe UI', Arial, sans-serif;
+  background: var(--offwhite);
+  color: var(--body);
+  min-height: 100vh;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+/* ── Header ────────────────────────────────────────────── */
+.site-header {
+  background: var(--deep);
+  padding: 0;
+}
+.header-inner {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 22px 24px 0;
+}
+.header-tag {
+  display: inline-block;
+  background: var(--green);
+  color: var(--white);
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+.header-title {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 1.55rem;
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1.2;
+  margin-bottom: 6px;
+}
+.header-sub {
+  font-size: .88rem;
+  color: #a8c8d8;
+  font-style: italic;
+  padding-bottom: 18px;
+}
+
+/* ── Progress ──────────────────────────────────────────── */
+.progress-wrap {
+  background: #0f2835;
+  padding: 0 0 1px;
+}
+.progress-bar-bg {
+  background: #1e4d63;
+  height: 5px;
+}
+.progress-bar-fill {
+  height: 5px;
+  background: var(--green);
+  transition: width .4s ease;
+  width: 0%;
+}
+.progress-label {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 7px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: .75rem;
+  color: #7aafc0;
+}
+.progress-label strong { color: #a8d8e8; }
+
+/* ── Main ──────────────────────────────────────────────── */
+.main {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 28px 20px 60px;
+}
+
+/* ── Section ───────────────────────────────────────────── */
+.section { display: none; }
+.section.active { display: block; animation: fadeIn .25s ease; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+.section-label {
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--teal);
+  margin-bottom: 6px;
+}
+.section-heading {
+  font-family: Georgia, serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--deep);
+  margin-bottom: 8px;
+  line-height: 1.3;
+}
+.section-intro {
+  font-size: .9rem;
+  color: var(--muted);
+  margin-bottom: 28px;
+  line-height: 1.6;
+  border-left: 3px solid var(--line);
+  padding-left: 12px;
+}
+
+/* ── Question card ─────────────────────────────────────── */
+.q-card {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 20px 22px;
+  margin-bottom: 18px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.05);
+}
+.q-label {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--body);
+  margin-bottom: 4px;
+  line-height: 1.4;
+}
+.q-hint {
+  font-size: .8rem;
+  color: var(--muted);
+  margin-bottom: 14px;
+  font-style: italic;
+}
+
+/* ── Choice chips (single / multi) ────────────────────── */
+.chip-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.chip {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 14px;
+  border: 2px solid var(--line);
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: .9rem;
+  color: var(--body);
+  background: var(--offwhite);
+  transition: border-color .15s, background .15s, color .15s;
+  user-select: none;
+  line-height: 1.3;
+}
+.chip:hover { border-color: var(--teal); background: var(--ice); }
+.chip.selected {
+  border-color: var(--teal);
+  background: var(--ice);
+  color: var(--teal);
+  font-weight: 700;
+}
+.chip.selected .chip-dot { background: var(--teal); }
+.chip-dot {
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  border: 2px solid var(--line);
+  flex-shrink: 0;
+  transition: background .15s, border-color .15s;
+}
+.chip.selected .chip-dot { border-color: var(--teal); }
+
+/* Square checkbox variant for multi-select */
+.chip.multi .chip-dot { border-radius: 3px; }
+
+/* ── Likert scale ──────────────────────────────────────── */
+.likert-wrap {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 6px;
+}
+.likert-btn {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  padding: 10px 4px 8px;
+  border: 2px solid var(--line);
+  border-radius: 10px;
+  cursor: pointer;
+  background: var(--offwhite);
+  transition: border-color .15s, background .15s;
+  min-width: 48px;
+  font-size: .78rem;
+  color: var(--muted);
+  text-align: center;
+  line-height: 1.2;
+  user-select: none;
+}
+.likert-btn:hover { border-color: var(--teal); background: var(--ice); }
+.likert-btn .l-num {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--muted);
+  transition: color .15s;
+}
+.likert-btn.sel-1 { border-color: var(--r1); background: #fdf0ef; }
+.likert-btn.sel-1 .l-num { color: var(--r1); }
+.likert-btn.sel-2 { border-color: var(--r2); background: #fdf6eb; }
+.likert-btn.sel-2 .l-num { color: var(--r2); }
+.likert-btn.sel-3 { border-color: var(--r3); background: #f5f5f5; }
+.likert-btn.sel-3 .l-num { color: var(--r3); }
+.likert-btn.sel-4 { border-color: var(--r4); background: var(--ice); }
+.likert-btn.sel-4 .l-num { color: var(--r4); }
+.likert-btn.sel-5 { border-color: var(--r5); background: var(--sage); }
+.likert-btn.sel-5 .l-num { color: var(--r5); }
+
+.likert-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: .72rem;
+  color: var(--muted);
+  padding: 0 2px;
+  font-style: italic;
+}
+
+/* ── Textarea ──────────────────────────────────────────── */
+textarea {
+  width: 100%;
+  border: 2px solid var(--line);
+  border-radius: 8px;
+  padding: 12px 14px;
+  font-family: inherit;
+  font-size: .9rem;
+  color: var(--body);
+  resize: vertical;
+  min-height: 90px;
+  background: var(--white);
+  transition: border-color .15s;
+  line-height: 1.5;
+}
+textarea:focus { outline: none; border-color: var(--teal); }
+textarea::placeholder { color: #9ab0be; }
+
+/* ── Navigation buttons ───────────────────────────────── */
+.nav-row {
+  display: flex;
+  gap: 12px;
+  margin-top: 28px;
+  align-items: center;
+}
+.btn {
+  padding: 12px 28px;
+  border-radius: 8px;
+  font-size: .95rem;
+  font-weight: 700;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: background .15s, color .15s, border-color .15s;
+  font-family: inherit;
+}
+.btn-primary {
+  background: var(--teal);
+  color: var(--white);
+  border-color: var(--teal);
+}
+.btn-primary:hover { background: var(--deep); border-color: var(--deep); }
+.btn-secondary {
+  background: transparent;
+  color: var(--muted);
+  border-color: var(--line);
+}
+.btn-secondary:hover { background: var(--offwhite); border-color: var(--teal); color: var(--teal); }
+
+/* Required indicator */
+.required-note {
+  font-size: .75rem;
+  color: var(--muted);
+  margin-left: auto;
+  font-style: italic;
+}
+
+/* ── Validation error ──────────────────────────────────── */
+.q-card.error { border-color: #c0392b; }
+.error-msg {
+  font-size: .78rem;
+  color: #c0392b;
+  margin-top: 8px;
+  display: none;
+}
+.q-card.error .error-msg { display: block; }
+
+/* ── Welcome section ───────────────────────────────────── */
+.welcome-box {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 28px 26px;
+  margin-bottom: 28px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.05);
+}
+.welcome-box p { font-size: .95rem; margin-bottom: 12px; color: var(--body); }
+.welcome-box p:last-child { margin-bottom: 0; }
+.welcome-box strong { color: var(--teal); }
+.welcome-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 18px;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+}
+.meta-pill {
+  font-size: .78rem;
+  background: var(--ice);
+  color: var(--teal);
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-weight: 600;
+}
+
+/* ── Thank you screen ──────────────────────────────────── */
+.thankyou-head {
+  background: var(--deep);
+  border-radius: 12px;
+  padding: 28px 26px;
+  color: var(--white);
+  margin-bottom: 22px;
+  text-align: center;
+}
+.thankyou-icon { font-size: 3rem; margin-bottom: 12px; }
+.thankyou-head h2 {
+  font-family: Georgia, serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+.thankyou-head p { font-size: .9rem; color: #a8c8d8; }
+
+.summary-card {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 22px 24px;
+  margin-bottom: 16px;
+}
+.summary-card h3 {
+  font-size: .78rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 16px;
+}
+
+/* Rating bars */
+.rating-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+.rating-row:last-child { margin-bottom: 0; }
+.rating-label {
+  font-size: .82rem;
+  color: var(--body);
+  flex: 1;
+  line-height: 1.3;
+}
+.rating-bar-wrap {
+  width: 120px;
+  flex-shrink: 0;
+  height: 10px;
+  background: var(--line);
+  border-radius: 5px;
+  overflow: hidden;
+}
+.rating-bar-fill {
+  height: 100%;
+  border-radius: 5px;
+  background: var(--teal);
+  transition: width .6s ease;
+}
+.rating-val {
+  font-size: .82rem;
+  font-weight: 700;
+  color: var(--teal);
+  min-width: 28px;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+/* Verbatim answers */
+.verbatim-item {
+  margin-bottom: 14px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--line);
+}
+.verbatim-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+.verbatim-q {
+  font-size: .8rem;
+  font-weight: 700;
+  color: var(--teal);
+  margin-bottom: 4px;
+}
+.verbatim-a {
+  font-size: .9rem;
+  color: var(--body);
+  font-style: italic;
+}
+.verbatim-a.empty { color: var(--muted); font-style: italic; }
+
+/* Overall rating */
+.overall-display {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 16px;
+  border-radius: 8px;
+  font-size: .95rem;
+  font-weight: 700;
+}
+.overall-display.pos { background: var(--sage); color: var(--green); }
+.overall-display.neu { background: var(--amber); color: #7a5000; }
+.overall-display.neg { background: #fdf0ef; color: var(--r1); }
+.overall-display .o-emoji { font-size: 1.5rem; }
+
+/* Print button */
+.print-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--offwhite);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 10px 18px;
+  font-family: inherit;
+  font-size: .85rem;
+  color: var(--muted);
+  cursor: pointer;
+  transition: border-color .15s, color .15s;
+}
+.print-btn:hover { border-color: var(--teal); color: var(--teal); }
+
+/* ── Responsive ────────────────────────────────────────── */
+@media (max-width: 520px) {
+  .likert-wrap { gap: 4px; }
+  .likert-btn { padding: 8px 2px 6px; min-width: 36px; font-size: .66rem; }
+  .likert-btn .l-num { font-size: .95rem; }
+  .chip { font-size: .84rem; padding: 8px 10px; }
+  .header-title { font-size: 1.3rem; }
+  .rating-bar-wrap { width: 80px; }
+}
+
+/* ── Print ─────────────────────────────────────────────── */
+@media print {
+  body { background: white; font-size: 13px; }
+  .site-header, .progress-wrap, .nav-row, .print-btn { display: none; }
+  .section { display: block !important; }
+  .section.active { animation: none; }
+  .q-card, .welcome-box, .summary-card, .thankyou-head { box-shadow: none; break-inside: avoid; }
+}
+</style>
+</head>
+<body>
+
+<!-- ══ HEADER ═════════════════════════════════════════════ -->
+<header class="site-header">
+  <div class="header-inner">
+    <div class="header-tag">Berufskolleg NRW · Mathematik &amp; Physik</div>
+    <h1 class="header-title">Feedback zum KI-Klausurtraining</h1>
+    <p class="header-sub">Deine ehrliche Meinung hilft, das Konzept weiterzuentwickeln.</p>
+  </div>
+</header>
+
+<!-- ══ PROGRESS ══════════════════════════════════════════ -->
+<div class="progress-wrap">
+  <div class="progress-bar-bg">
+    <div class="progress-bar-fill" id="progressFill"></div>
+  </div>
+  <div class="progress-label">
+    <span id="progressText">Abschnitt 0 von 3</span>
+    <strong id="progressPct">0 %</strong>
+  </div>
+</div>
+
+<!-- ══ MAIN ═══════════════════════════════════════════════ -->
+<main class="main">
+
+  <!-- ─── SECTION 0: Willkommen ─────────────────────────── -->
+  <section class="section active" id="sec0">
+    <div class="section-label">Einleitung</div>
+    <h2 class="section-heading">Kurz erklärt – was dich erwartet</h2>
+
+    <div class="welcome-box">
+      <p>Du hast gerade eine Präsentation über ein neues Klausurtraining-System gesehen. Dieses Formular sammelt deine ehrliche Einschätzung dazu.</p>
+      <p>Es gibt <strong>keine richtigen oder falschen Antworten</strong> – gefragt ist deine persönliche Meinung. Das Feedback ist anonym und wird nicht benotet.</p>
+      <p>Es dauert ca. <strong>5 Minuten</strong>. Du wirst durch 3 kurze Abschnitte geführt.</p>
+      <div class="welcome-meta">
+        <span class="meta-pill">⏱ ca. 5 Minuten</span>
+        <span class="meta-pill">🔒 Anonym</span>
+        <span class="meta-pill">📋 10 Fragen</span>
+      </div>
+    </div>
+
+    <div class="nav-row">
+      <button class="btn btn-primary" onclick="goTo(1)">Starten →</button>
+    </div>
+  </section>
+
+  <!-- ─── SECTION 1: Klausurvorbereitung heute ──────────── -->
+  <section class="section" id="sec1">
+    <div class="section-label">Abschnitt 1 von 3</div>
+    <h2 class="section-heading">Meine Klausurvorbereitung heute</h2>
+    <p class="section-intro">Zwei kurze Fragen zu deiner aktuellen Vorbereitung – damit wir verstehen, wie du bisher vorgehst.</p>
+
+    <!-- Q1 -->
+    <div class="q-card" id="qc1">
+      <div class="q-label">1. Wann startest du normalerweise mit der gezielten Klausurvorbereitung?</div>
+      <div class="q-hint">Bitte eine Antwort auswählen.</div>
+      <div class="chip-group" id="q1">
+        <label class="chip" onclick="selectChip(this,'q1')">
+          <span class="chip-dot"></span>Erst in der letzten Woche vor der Klausur
+        </label>
+        <label class="chip" onclick="selectChip(this,'q1')">
+          <span class="chip-dot"></span>Etwa zwei Wochen vorher
+        </label>
+        <label class="chip" onclick="selectChip(this,'q1')">
+          <span class="chip-dot"></span>Schon mehrere Wochen im Voraus
+        </label>
+        <label class="chip" onclick="selectChip(this,'q1')">
+          <span class="chip-dot"></span>Ich bereite mich kaum gezielt vor
+        </label>
+      </div>
+      <div class="error-msg">Bitte wähle eine Antwort aus.</div>
+    </div>
+
+    <!-- Q2 -->
+    <div class="q-card" id="qc2">
+      <div class="q-label">2. Was fehlt dir bei der aktuellen Klausurvorbereitung am meisten?</div>
+      <div class="q-hint">Mehrere Antworten möglich.</div>
+      <div class="chip-group" id="q2">
+        <label class="chip multi" onclick="toggleChip(this)">
+          <span class="chip-dot"></span>Genug Übungsaufgaben
+        </label>
+        <label class="chip multi" onclick="toggleChip(this)">
+          <span class="chip-dot"></span>Rückmeldung auf meine Lösungen
+        </label>
+        <label class="chip multi" onclick="toggleChip(this)">
+          <span class="chip-dot"></span>Klarer Überblick über die Prüfungsthemen
+        </label>
+        <label class="chip multi" onclick="toggleChip(this)">
+          <span class="chip-dot"></span>Eine feste Struktur / Zeitplan
+        </label>
+        <label class="chip multi" onclick="toggleChip(this)">
+          <span class="chip-dot"></span>Motivation, früh genug anzufangen
+        </label>
+        <label class="chip multi" onclick="toggleChip(this)">
+          <span class="chip-dot"></span>Mir fehlt eigentlich nichts
+        </label>
+      </div>
+      <div class="error-msg">Bitte wähle mindestens eine Antwort aus.</div>
+    </div>
+
+    <div class="nav-row">
+      <button class="btn btn-secondary" onclick="goTo(0)">← Zurück</button>
+      <button class="btn btn-primary" onclick="goTo(2)">Weiter →</button>
+      <span class="required-note">* Pflichtfelder</span>
+    </div>
+  </section>
+
+  <!-- ─── SECTION 2: Bewertung der Idee ─────────────────── -->
+  <section class="section" id="sec2">
+    <div class="section-label">Abschnitt 2 von 3</div>
+    <h2 class="section-heading">Was ich von der Idee halte</h2>
+    <p class="section-intro">Bitte bewerte die folgenden Aussagen auf einer Skala von 1 (stimme nicht zu) bis 5 (stimme voll zu).</p>
+
+    <!-- Q3 -->
+    <div class="q-card" id="qc3">
+      <div class="q-label">3. Einen Quartals-Kompass zu Beginn zu bekommen (Themen, Operatoren, Zeitplan) würde mir helfen, mich besser vorzubereiten.</div>
+      <div class="q-hint">1 = stimme nicht zu &nbsp;·&nbsp; 5 = stimme voll zu</div>
+      <div class="likert-wrap" id="q3" data-val="">
+        <button class="likert-btn" onclick="selectLikert(this,'q3',1)"><span class="l-num">1</span><span>gar nicht</span></button>
+        <button class="likert-btn" onclick="selectLikert(this,'q3',2)"><span class="l-num">2</span><span>eher nicht</span></button>
+        <button class="likert-btn" onclick="selectLikert(this,'q3',3)"><span class="l-num">3</span><span>neutral</span></button>
+        <button class="likert-btn" onclick="selectLikert(this,'q3',4)"><span class="l-num">4</span><span>eher ja</span></button>
+        <button class="likert-btn" onclick="selectLikert(this,'q3',5)"><span class="l-num">5</span><span>voll und ganz</span></button>
+      </div>
+      <div class="error-msg">Bitte wähle eine Bewertung aus.</div>
+    </div>
+
+    <!-- Q4 -->
+    <div class="q-card" id="qc4">
+      <div class="q-label">4. Erst selbst bearbeiten, dann mit der Musterlösung vergleichen und die Fehlerart benennen – das halte ich für eine sinnvolle Lernmethode.</div>
+      <div class="q-hint">1 = stimme nicht zu &nbsp;·&nbsp; 5 = stimme voll zu</div>
+      <div class="likert-wrap" id="q4" data-val="">
+        <button class="likert-btn" onclick="selectLikert(this,'q4',1)"><span class="l-num">1</span><span>gar nicht</span></button>
+        <button class="likert-btn" onclick="selectLikert(this,'q4',2)"><span class="l-num">2</span><span>eher nicht</span></button>
+        <button class="likert-btn" onclick="selectLikert(this,'q4',3)"><span class="l-num">3</span><span>neutral</span></button>
+        <button class="likert-btn" onclick="selectLikert(this,'q4',4)"><span class="l-num">4</span><span>eher ja</span></button>
+        <button class="likert-btn" onclick="selectLikert(this,'q4',5)"><span class="l-num">5</span><span>voll und ganz</span></button>
+      </div>
+      <div class="error-msg">Bitte wähle eine Bewertung aus.</div>
+    </div>
+
+    <!-- Q5 -->
+    <div class="q-card" id="qc5">
+      <div class="q-label">5. Das Klausurtraining über das ganze Quartal zu verteilen – statt alles kurz vor der Prüfung – finde ich besser als das bisherige Vorgehen.</div>
+      <div class="q-hint">1 = stimme nicht zu &nbsp;·&nbsp; 5 = stimme voll zu</div>
+      <div class="likert-wrap" id="q5" data-val="">
+        <button class="likert-btn" onclick="selectLikert(this,'q5',1)"><span class="l-num">1</span><span>gar nicht</span></button>
+        <button class="likert-btn" onclick="selectLikert(this,'q5',2)"><span class="l-num">2</span><span>eher nicht</span></button>
+        <button class="likert-btn" onclick="selectLikert(this,'q5',3)"><span class="l-num">3</span><span>neutral</span></button>
+        <button class="likert-btn" onclick="selectLikert(this,'q5',4)"><span class="l-num">4</span><span>eher ja</span></button>
+        <button class="likert-btn" onclick="selectLikert(this,'q5',5)"><span class="l-num">5</span><span>voll und ganz</span></button>
+      </div>
+      <div class="error-msg">Bitte wähle eine Bewertung aus.</div>
+    </div>
+
+    <!-- Q6 -->
+    <div class="q-card" id="qc6">
+      <div class="q-label">6. Ich würde an diesem Klausurtraining-System teilnehmen, wenn es in meinem Kurs eingeführt wird.</div>
+      <div class="q-hint">1 = stimme nicht zu &nbsp;·&nbsp; 5 = stimme voll zu</div>
+      <div class="likert-wrap" id="q6" data-val="">
+        <button class="likert-btn" onclick="selectLikert(this,'q6',1)"><span class="l-num">1</span><span>gar nicht</span></button>
+        <button class="likert-btn" onclick="selectLikert(this,'q6',2)"><span class="l-num">2</span><span>eher nicht</span></button>
+        <button class="likert-btn" onclick="selectLikert(this,'q6',3)"><span class="l-num">3</span><span>neutral</span></button>
+        <button class="likert-btn" onclick="selectLikert(this,'q6',4)"><span class="l-num">4</span><span>eher ja</span></button>
+        <button class="likert-btn" onclick="selectLikert(this,'q6',5)"><span class="l-num">5</span><span>voll und ganz</span></button>
+      </div>
+      <div class="error-msg">Bitte wähle eine Bewertung aus.</div>
+    </div>
+
+    <div class="nav-row">
+      <button class="btn btn-secondary" onclick="goTo(1)">← Zurück</button>
+      <button class="btn btn-primary" onclick="goTo(3)">Weiter →</button>
+      <span class="required-note">* Pflichtfelder</span>
+    </div>
+  </section>
+
+  <!-- ─── SECTION 3: Deine Stimme ───────────────────────── -->
+  <section class="section" id="sec3">
+    <div class="section-label">Abschnitt 3 von 3</div>
+    <h2 class="section-heading">Deine Stimme</h2>
+    <p class="section-intro">Drei kurze Fragen – du kannst so viel oder so wenig schreiben, wie du möchtest. Die offenen Fragen sind freiwillig.</p>
+
+    <!-- Q7 -->
+    <div class="q-card">
+      <div class="q-label">7. Was gefällt dir an dem Konzept besonders? <span style="font-weight:400;color:var(--muted)">(freiwillig)</span></div>
+      <textarea id="q7" placeholder="z. B. Die frühe Transparenz über Prüfungsthemen, die Möglichkeit Fehler zu erkennen …" rows="3"></textarea>
+    </div>
+
+    <!-- Q8 -->
+    <div class="q-card">
+      <div class="q-label">8. Was würde dich abhalten oder stören? <span style="font-weight:400;color:var(--muted)">(freiwillig)</span></div>
+      <textarea id="q8" placeholder="z. B. Zu viel Aufwand, Datenschutzbedenken, fehlendes Vertrauen in KI …" rows="3"></textarea>
+    </div>
+
+    <!-- Q9 -->
+    <div class="q-card" id="qc9">
+      <div class="q-label">9. Wie bewertest du das Konzept insgesamt?</div>
+      <div class="q-hint">Bitte eine Antwort auswählen.</div>
+      <div class="chip-group" id="q9" style="flex-direction:column;">
+        <label class="chip" onclick="selectChip(this,'q9')">
+          <span style="font-size:1.2rem">👍</span>&nbsp; Gute Idee – so sollte Klausurvorbereitung laufen
+        </label>
+        <label class="chip" onclick="selectChip(this,'q9')">
+          <span style="font-size:1.2rem">🤔</span>&nbsp; Interessant, aber ich hätte noch Fragen und Bedenken
+        </label>
+        <label class="chip" onclick="selectChip(this,'q9')">
+          <span style="font-size:1.2rem">😐</span>&nbsp; Ich bin noch unentschieden
+        </label>
+        <label class="chip" onclick="selectChip(this,'q9')">
+          <span style="font-size:1.2rem">👎</span>&nbsp; Ich sehe das skeptisch – lieber beim bisherigen Vorgehen bleiben
+        </label>
+      </div>
+      <div class="error-msg">Bitte wähle eine Antwort aus.</div>
+    </div>
+
+    <!-- Q10 -->
+    <div class="q-card">
+      <div class="q-label">10. Hast du noch etwas, das wichtig ist? <span style="font-weight:400;color:var(--muted)">(freiwillig)</span></div>
+      <textarea id="q10" placeholder="Weitere Anmerkungen, Ideen oder Verbesserungsvorschläge …" rows="3"></textarea>
+    </div>
+
+    <div class="nav-row">
+      <button class="btn btn-secondary" onclick="goTo(2)">← Zurück</button>
+      <button class="btn btn-primary" onclick="submit()" style="background:var(--green);border-color:var(--green);">Feedback abgeben ✓</button>
+      <span class="required-note">* Frage 9 ist Pflicht</span>
+    </div>
+  </section>
+
+  <!-- ─── SECTION 4: Danke ───────────────────────────────── -->
+  <section class="section" id="sec4">
+    <div class="thankyou-head">
+      <div class="thankyou-icon">✅</div>
+      <h2>Vielen Dank für dein Feedback!</h2>
+      <p>Deine Einschätzung hilft dabei, das Konzept weiterzuentwickeln.</p>
+    </div>
+
+    <!-- Ratings summary -->
+    <div class="summary-card">
+      <h3>Deine Bewertungen auf einen Blick</h3>
+
+      <div class="rating-row">
+        <div class="rating-label">Quartals-Kompass wäre hilfreich</div>
+        <div class="rating-bar-wrap"><div class="rating-bar-fill" id="bar3" style="width:0%"></div></div>
+        <div class="rating-val" id="val3">–</div>
+      </div>
+      <div class="rating-row">
+        <div class="rating-label">Erst bearbeiten, dann vergleichen ist sinnvoll</div>
+        <div class="rating-bar-wrap"><div class="rating-bar-fill" id="bar4" style="width:0%"></div></div>
+        <div class="rating-val" id="val4">–</div>
+      </div>
+      <div class="rating-row">
+        <div class="rating-label">Verteilung über das Quartal bevorzugt</div>
+        <div class="rating-bar-wrap"><div class="rating-bar-fill" id="bar5" style="width:0%"></div></div>
+        <div class="rating-val" id="val5">–</div>
+      </div>
+      <div class="rating-row">
+        <div class="rating-label">Würde am System teilnehmen</div>
+        <div class="rating-bar-wrap"><div class="rating-bar-fill" id="bar6" style="width:0%;background:var(--green)"></div></div>
+        <div class="rating-val" id="val6" style="color:var(--green)">–</div>
+      </div>
+    </div>
+
+    <!-- Overall verdict -->
+    <div class="summary-card">
+      <h3>Gesamtbewertung</h3>
+      <div class="overall-display" id="overallDisplay">
+        <span class="o-emoji" id="overallEmoji">–</span>
+        <span id="overallText">–</span>
+      </div>
+    </div>
+
+    <!-- Open answers -->
+    <div class="summary-card" id="openAnswersCard">
+      <h3>Deine offenen Antworten</h3>
+      <div id="openAnswers"></div>
+    </div>
+
+    <div class="nav-row" style="flex-wrap:wrap;gap:10px;">
+      <button class="print-btn" onclick="window.print()">🖨 Zusammenfassung drucken</button>
+    </div>
+  </section>
+
+</main>
+
+<script>
+// ── State ──────────────────────────────────────────────
+let currentSection = 0;
+const totalSections = 3;
+
+// ── Progress ───────────────────────────────────────────
+function updateProgress(sec) {
+  const pct = sec === 0 ? 0 : sec === 4 ? 100 : Math.round((sec / totalSections) * 100);
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('progressPct').textContent = pct + ' %';
+  document.getElementById('progressText').textContent =
+    sec === 0 ? 'Einleitung' :
+    sec === 4 ? 'Abgeschlossen' :
+    'Abschnitt ' + sec + ' von ' + totalSections;
+}
+
+// ── Navigation ─────────────────────────────────────────
+function goTo(sec) {
+  if (sec > currentSection && !validate(currentSection)) return;
+  document.getElementById('sec' + currentSection).classList.remove('active');
+  currentSection = sec;
+  document.getElementById('sec' + sec).classList.add('active');
+  updateProgress(sec);
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ── Submit ─────────────────────────────────────────────
+function submit() {
+  if (!validate(3)) return;
+  buildSummary();
+  goTo(4);
+}
+
+// ── Validation ─────────────────────────────────────────
+function validate(sec) {
+  if (sec === 0) return true;
+
+  let ok = true;
+
+  if (sec === 1) {
+    // Q1 – single chip
+    ok = validateChip('qc1', 'q1') && ok;
+    // Q2 – at least one multi chip
+    ok = validateMulti('qc2', 'q2') && ok;
+  }
+
+  if (sec === 2) {
+    ['3','4','5','6'].forEach(n => {
+      ok = validateLikert('qc' + n, 'q' + n) && ok;
+    });
+  }
+
+  if (sec === 3) {
+    ok = validateChip('qc9', 'q9') && ok;
+  }
+
+  return ok;
+}
+
+function validateChip(cardId, groupId) {
+  const card = document.getElementById(cardId);
+  const selected = document.querySelectorAll('#' + groupId + ' .chip.selected');
+  if (selected.length === 0) { card.classList.add('error'); return false; }
+  card.classList.remove('error'); return true;
+}
+
+function validateMulti(cardId, groupId) {
+  const card = document.getElementById(cardId);
+  const selected = document.querySelectorAll('#' + groupId + ' .chip.selected');
+  if (selected.length === 0) { card.classList.add('error'); return false; }
+  card.classList.remove('error'); return true;
+}
+
+function validateLikert(cardId, groupId) {
+  const card = document.getElementById(cardId);
+  const group = document.getElementById(groupId);
+  if (!group.dataset.val) { card.classList.add('error'); return false; }
+  card.classList.remove('error'); return true;
+}
+
+// ── Chip selection (single) ────────────────────────────
+function selectChip(el, groupId) {
+  document.querySelectorAll('#' + groupId + ' .chip').forEach(c => c.classList.remove('selected'));
+  el.classList.add('selected');
+  const card = el.closest('.q-card');
+  if (card) card.classList.remove('error');
+}
+
+// ── Chip toggle (multi) ────────────────────────────────
+function toggleChip(el) {
+  el.classList.toggle('selected');
+  const card = el.closest('.q-card');
+  if (card) {
+    const anySelected = card.querySelectorAll('.chip.selected').length > 0;
+    if (anySelected) card.classList.remove('error');
+  }
+}
+
+// ── Likert selection ───────────────────────────────────
+function selectLikert(el, groupId, val) {
+  const group = document.getElementById(groupId);
+  group.querySelectorAll('.likert-btn').forEach(b => {
+    b.className = 'likert-btn';
+  });
+  el.classList.add('sel-' + val);
+  group.dataset.val = val;
+  const card = el.closest('.q-card');
+  if (card) card.classList.remove('error');
+}
+
+// ── Build summary ──────────────────────────────────────
+function buildSummary() {
+  // Rating bars Q3–Q6
+  ['3','4','5','6'].forEach(n => {
+    const val = parseInt(document.getElementById('q' + n).dataset.val) || 0;
+    const pct = (val / 5) * 100;
+    document.getElementById('bar' + n).style.width = pct + '%';
+    document.getElementById('val' + n).textContent = val + ' / 5';
+  });
+
+  // Overall verdict Q9
+  const overall = document.querySelector('#q9 .chip.selected');
+  const overallBox = document.getElementById('overallDisplay');
+  const overallEmoji = document.getElementById('overallEmoji');
+  const overallText = document.getElementById('overallText');
+
+  if (overall) {
+    const txt = overall.textContent.trim();
+    overallEmoji.textContent = txt.substring(0, 2);
+    overallText.textContent = txt.substring(3).trim();
+    if (txt.startsWith('👍')) { overallBox.className = 'overall-display pos'; }
+    else if (txt.startsWith('👎')) { overallBox.className = 'overall-display neg'; }
+    else { overallBox.className = 'overall-display neu'; }
+  }
+
+  // Open answers
+  const q7 = document.getElementById('q7').value.trim();
+  const q8 = document.getElementById('q8').value.trim();
+  const q10 = document.getElementById('q10').value.trim();
+  const openEl = document.getElementById('openAnswers');
+
+  const items = [
+    { q: 'Was gefällt dir besonders?', a: q7 },
+    { q: 'Was würde dich abhalten?', a: q8 },
+    { q: 'Weitere Anmerkungen', a: q10 },
+  ].filter(i => i.a);
+
+  if (items.length === 0) {
+    document.getElementById('openAnswersCard').style.display = 'none';
+  } else {
+    openEl.innerHTML = items.map(i =>
+      `<div class="verbatim-item">
+         <div class="verbatim-q">${i.q}</div>
+         <div class="verbatim-a">${i.a.replace(/</g,'&lt;')}</div>
+       </div>`
+    ).join('');
+  }
+}
+
+// ── Init ───────────────────────────────────────────────
+updateProgress(0);
+</script>
+</body>
+</html>
