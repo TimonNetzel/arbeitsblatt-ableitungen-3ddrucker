@@ -1,0 +1,1061 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Halbjahresskript Mathematik 13.1 · Stochastik</title>
+  <style>
+    :root{
+      --bg:#0b1020;--panel:#121a2e;--panel2:#18223a;--ink:#e8f0ff;--muted:#a7b4ce;--accent:#00d5ff;--accent2:#7c3cff;--good:#5eead4;--warn:#facc15;--bad:#fb7185;--line:rgba(255,255,255,.14);--shadow:0 24px 70px rgba(0,0,0,.35);--radius:22px;--paper:#f8fbff;--paperInk:#101828;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,"Noto Sans",sans-serif;background:radial-gradient(circle at top left,rgba(0,213,255,.16),transparent 34rem),radial-gradient(circle at 85% 8%,rgba(124,60,255,.22),transparent 30rem),linear-gradient(180deg,#080d1a 0%,var(--bg) 45%,#070b15 100%);color:var(--ink);line-height:1.52}
+    a{color:#8be9ff;text-decoration:none} a:hover{text-decoration:underline}
+    .wrap{width:min(1180px,calc(100% - 32px));margin:auto}
+    header.hero{padding:44px 0 24px;position:relative;overflow:hidden}
+    .topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:28px}
+    .brand{display:flex;align-items:center;gap:12px;font-weight:800;letter-spacing:.02em}
+    .brand-mark{width:42px;height:42px;border-radius:14px;background:linear-gradient(135deg,var(--accent),var(--accent2));box-shadow:0 0 38px rgba(0,213,255,.45);display:grid;place-items:center;color:#06101c;font-weight:900}
+    .hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:24px;align-items:stretch}
+    .hero-card,.panel,.dark-card{background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.035));border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);backdrop-filter:blur(10px)}
+    .hero-card{padding:26px}
+    h1{font-size:clamp(2rem,5vw,4.65rem);line-height:.96;margin:0;letter-spacing:-.06em}
+    h2{font-size:clamp(1.45rem,2.8vw,2.25rem);margin:0 0 14px;letter-spacing:-.03em}
+    h3{font-size:1.22rem;margin:0 0 8px} h4{font-size:1rem;margin:.1rem 0 .55rem;color:inherit}
+    p{margin:.45rem 0} .lead{font-size:clamp(1.05rem,1.7vw,1.28rem);color:var(--muted);max-width:850px;margin-top:18px}
+    .pillbar{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 0} .pill{border:1px solid var(--line);background:rgba(255,255,255,.055);padding:8px 12px;border-radius:999px;color:var(--muted);font-size:.9rem;backdrop-filter:blur(10px)}
+    .metric-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:18px} .metric{background:rgba(4,10,24,.56);border:1px solid var(--line);border-radius:18px;padding:14px} .metric b{display:block;font-size:1.35rem;color:white} .metric span{color:var(--muted);font-size:.86rem}
+    .signal{padding:22px;min-height:280px;display:grid;place-items:center;overflow:hidden} .signal svg{width:100%;max-width:450px;opacity:.96;filter:drop-shadow(0 18px 36px rgba(0,0,0,.35))}
+    nav.quick{position:sticky;top:0;z-index:20;backdrop-filter:blur(14px);background:rgba(8,13,26,.78);border-top:1px solid var(--line);border-bottom:1px solid var(--line)} nav.quick .wrap{display:flex;gap:8px;padding:10px 0;overflow:auto;align-items:center}
+    .btn,button{appearance:none;border:1px solid var(--line);color:var(--ink);background:rgba(255,255,255,.065);border-radius:999px;padding:10px 14px;cursor:pointer;font-weight:700;transition:.2s transform,.2s background,.2s border-color;text-decoration:none;display:inline-flex;align-items:center;gap:8px;white-space:nowrap;font:inherit}
+    .btn:hover,button:hover{transform:translateY(-1px);border-color:rgba(0,213,255,.55);background:rgba(0,213,255,.12)} .primary{background:linear-gradient(135deg,rgba(0,213,255,.92),rgba(124,60,255,.9)) !important;color:#06101c !important;border:none !important}
+    button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible{outline:3px solid rgba(0,213,255,.75);outline-offset:3px}
+    section{scroll-margin-top:82px} main>.wrap>section, main>section{padding:34px 0}
+    .section-head{display:flex;justify-content:space-between;gap:16px;align-items:end;margin-bottom:18px} .section-head p{color:var(--muted);max-width:790px}
+    .toc-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px} .toc-grid a{display:grid;gap:5px;background:rgba(255,255,255,.06);border:1px solid var(--line);border-radius:18px;padding:14px;color:var(--ink)} .toc-grid span{color:var(--muted);font-size:.92rem}
+    .chapter{padding:36px 0;border-top:1px solid var(--line)} .chapter-head{display:grid;grid-template-columns:.9fr 1.1fr;gap:18px;align-items:start;margin-bottom:18px} .chapter-kicker{display:inline-flex;border:1px solid rgba(0,213,255,.35);color:#9cecff;background:rgba(0,213,255,.08);border-radius:999px;padding:5px 9px;font-size:.8rem;font-weight:900;margin-bottom:8px}
+    .chapter-links{display:flex;flex-wrap:wrap;gap:8px;justify-content:flex-end} .mini-link{border:1px solid var(--line);background:rgba(255,255,255,.055);border-radius:999px;padding:8px 10px;color:#dbeafe;font-size:.86rem}
+    .unit{background:linear-gradient(180deg,#fbfdff,#edf4ff);color:var(--paperInk);border:1px solid rgba(255,255,255,.7);box-shadow:0 28px 90px rgba(0,0,0,.30);border-radius:26px;padding:20px;margin:18px 0;position:relative;overflow:hidden} .unit:before{content:"";position:absolute;left:0;top:0;right:0;height:7px;background:linear-gradient(90deg,var(--accent),var(--accent2))}
+    .unit-head{display:grid;grid-template-columns:auto 1fr auto;gap:14px;align-items:start;padding-top:8px;margin-bottom:14px} .week-badge{display:inline-flex;align-self:start;background:#0f172a;color:white;border-radius:999px;padding:8px 11px;font-weight:900;white-space:nowrap} .muted{color:#526176} .done-line{display:flex;align-items:center;gap:8px;color:#334155;font-size:.9rem;white-space:nowrap} .done-line input{accent-color:#00a8cc;width:18px;height:18px}
+    .unit-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+    .card{background:white;border:1px solid #d8e3f2;border-radius:16px;padding:13px;margin:10px 0;color:#1e293b} .card.light{background:#f8fbff} .card.warn{border-left:4px solid var(--warn);background:#fff8db} .card.task{border-left:4px solid var(--accent)} .callout{border-left:4px solid var(--accent);background:#edfafe;padding:12px 14px;border-radius:14px;margin:10px 0;color:#0f172a}
+    .tagrow{display:flex;flex-wrap:wrap;gap:7px;margin:.65rem 0;align-items:center} .tag{font-size:.78rem;border:1px solid #cbd5e1;color:#334155;background:#f8fafc;border-radius:999px;padding:4px 8px;font-weight:700}
+    .help-stack details{border:1px solid #d8e3f2;border-radius:14px;margin:8px 0;background:#f8fbff;overflow:hidden} .help-stack summary{cursor:pointer;font-weight:900;padding:10px 12px;color:#0f172a} .help-stack details[open] summary{border-bottom:1px solid #e2e8f0} .help-stack p{padding:0 12px 10px;margin:0;color:#334155} .solution{background:#f3fff9 !important;border-color:#adebd8 !important}
+    input,select{background:#071022;color:var(--ink);border:1px solid var(--line);border-radius:14px;padding:12px 14px;font:inherit;outline:none} input[type="range"]{padding:0;accent-color:#00d5ff} .unit input{width:min(300px,100%)}
+    .task-feedback,.choice-feedback,.feedback{margin-top:10px;min-height:24px;font-weight:800} .ok{color:#087f5b} .no{color:#be123c}
+    .answers{display:flex;flex-direction:column;gap:8px;margin-top:10px} .unit .answers button{justify-content:flex-start;white-space:normal;text-align:left;border-radius:14px;background:#eef4ff;color:#0f172a;border-color:#cbd5e1}
+    .formula{display:inline-block;font-family:"Cambria Math","STIX Two Math","Times New Roman",serif;font-weight:700;letter-spacing:.01em;padding:.08em .32em;border-radius:.45em;background:rgba(0,213,255,.10);border:1px solid rgba(0,213,255,.22);color:inherit;white-space:nowrap;max-width:100%;overflow-x:auto;vertical-align:middle} .unit .formula,.card .formula{background:#eef8ff;border-color:#cdeef8;color:#0f172a} .dark-card .formula,.result .formula{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.18);color:inherit} .formula math{font-family:"Cambria Math","STIX Two Math","Times New Roman",serif;font-size:1.08em}
+    .dark-card{padding:18px;margin:18px 0} .dark-card h3{color:white} .dark-card p,.dark-card li{color:var(--muted)} .tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px} .tab.active{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#04111e;border:0}
+    .tab-panel{display:none} .tab-panel.active{display:block} .form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:12px 0} label{display:grid;gap:6px;color:var(--muted);font-weight:700;font-size:.92rem}
+    .result{margin-top:12px;border:1px solid rgba(0,213,255,.35);background:rgba(0,213,255,.08);border-radius:16px;padding:14px;color:#e6fbff;min-height:52px} canvas{width:100%;max-width:100%;background:#071022;border:1px solid var(--line);border-radius:18px;margin-top:12px}
+    .compare-wrap{overflow:auto;border-radius:18px;border:1px solid var(--line)} .compare{width:100%;border-collapse:collapse;background:rgba(255,255,255,.05)} .compare th,.compare td{padding:12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top} .compare th{color:white;background:rgba(255,255,255,.08)} .compare td{color:var(--muted)}
+    .quiz-grid,.glossary{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px} .quiz-card,.term{background:rgba(255,255,255,.06);border:1px solid var(--line);border-radius:18px;padding:14px} .term b{display:block;color:white;margin-bottom:5px} .term span,.quiz-card p{color:var(--muted)} .source-list{columns:2;column-gap:28px;color:var(--muted)} .source-list li{break-inside:avoid;margin:0 0 10px}
+    .js-status{border:1px solid rgba(94,234,212,.35);background:rgba(94,234,212,.08);border-radius:16px;padding:12px;color:#dffdf8;margin-top:14px}
+    @media(max-width:980px){.hero-grid,.chapter-head{grid-template-columns:1fr} .chapter-links{justify-content:flex-start} .toc-grid,.quiz-grid,.glossary{grid-template-columns:repeat(2,minmax(0,1fr))}}
+    @media(max-width:640px){.wrap{width:min(100% - 20px,1180px)} .unit{padding:14px;border-radius:20px} .unit-head,.unit-grid,.form-grid,.toc-grid,.metric-grid,.quiz-grid,.glossary{grid-template-columns:1fr} h1{letter-spacing:-.04em} .done-line{white-space:normal}}
+    @media print{
+      body{background:white;color:#111827} nav.quick,.interactive-only,.tabs,#top .signal,.js-status{display:none !important} .wrap{width:100%;margin:0} header.hero{padding:0 0 8mm} .hero-card,.dark-card,.unit,.card,.quiz-card,.term{box-shadow:none;background:white;color:#111827;border-color:#cbd5e1} .hero-grid,.chapter-head,.unit-grid,.toc-grid,.quiz-grid,.glossary{grid-template-columns:1fr} .unit{page-break-inside:avoid;margin:8mm 0;border-radius:8px} .chapter{page-break-before:always;border-top:0} .card{page-break-inside:avoid} canvas{border:1px solid #94a3b8;background:white} .source-list{columns:1} a{color:#111827;text-decoration:none} .pill,.mini-link,.week-badge{border:1px solid #94a3b8;background:#f8fafc;color:#111827} details{break-inside:avoid}
+    }
+  </style>
+</head>
+<body>
+  <header class="hero" id="top">
+    <div class="wrap">
+      <div class="topbar"><div class="brand"><span class="brand-mark">M13</span><span>Mathematik · 13.1 · Stochastik</span></div><a class="btn" href="#quellen">Quellen</a></div>
+      <div class="hero-grid">
+        <div class="hero-card">
+          <h1>Interaktive Skript-App<br>Wahrscheinlichkeit & Hypothesentests</h1>
+          <p class="lead">Dieses Halbjahresskript erweitert die vorhandene Lernlandkarte zu einem ausführlichen digitalen Lehrbuch. Jede Station wird zu einem Kapitel mit Erklärungen, Beispielen, Übungen, Hilfen, Lösungen, Simulationen und Selbstchecks.</p>
+          <div class="pillbar" aria-label="Eckdaten"><span class="pill">Berufskolleg NRW</span><span class="pill">Anlage D17 · Sport/Biologie</span><span class="pill">Jahrgang 13 · Halbjahr 13.1</span><span class="pill">Offline nutzbar · eine HTML-Datei</span></div>
+          <div class="metric-grid"><div class="metric"><b>7</b><span>Kapitel aus der Landkarte</span></div><div class="metric"><b>17</b><span>Wocheneinheiten / Lernblöcke</span></div><div class="metric"><b>5</b><span>Rechner & Simulationen</span></div></div>
+          <div class="js-status" id="jsStatus"><b>Interaktivität:</b> JavaScript wird geprüft …</div>
+          <noscript><div class="js-status"><b>Hinweis:</b> JavaScript ist deaktiviert. Aufklappfelder funktionieren, Rechner und Simulationen nicht.</div></noscript>
+        </div>
+        <div class="hero-card signal" aria-label="Symbolische Stochastik-Grafik">
+          <svg viewBox="0 0 520 340" role="img" aria-label="Stochastik-Diagramm mit Häufigkeitskurve und Binomialbalken">
+            <defs><linearGradient id="g" x1="0" x2="1"><stop offset="0" stop-color="#00d5ff"/><stop offset="1" stop-color="#7c3cff"/></linearGradient><filter id="glow"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+            <rect x="24" y="28" width="472" height="284" rx="28" fill="rgba(255,255,255,.05)" stroke="rgba(255,255,255,.18)"/>
+            <path d="M75 255 L462 255 M75 70 L75 255" stroke="rgba(255,255,255,.35)" stroke-width="2"/>
+            <path d="M80 228 C120 150,155 210,190 166 S260 188,300 132 S382 106,452 95" fill="none" stroke="url(#g)" stroke-width="5" filter="url(#glow)"/>
+            <g fill="#5eead4" opacity=".9"><rect x="120" y="190" width="22" height="65" rx="4"/><rect x="152" y="160" width="22" height="95" rx="4"/><rect x="184" y="130" width="22" height="125" rx="4"/><rect x="216" y="152" width="22" height="103" rx="4"/><rect x="248" y="205" width="22" height="50" rx="4"/></g>
+            <text x="82" y="57" fill="#e8f0ff" font-size="18" font-weight="800">Daten → Modell → Entscheidung</text>
+            <text x="294" y="282" fill="#a7b4ce" font-size="14">n, k, p, α</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </header>
+  <nav class="quick" aria-label="Schnellnavigation"><div class="wrap"><a class="btn" href="#inhalt">Inhalt</a><a class="btn" href="#skript">Kapitel</a><a class="btn" href="#labor">Stochastik-Labor</a><a class="btn" href="#abschlussquiz">Abschlussquiz</a><a class="btn" href="#uebersicht">Übersicht</a><a class="btn" href="#glossar">Glossar</a><a class="btn" href="#quellen">Quellen</a></div></nav>
+  <main>
+    <section id="inhalt"><div class="wrap"><div class="section-head"><div><h2>So benutzt du dieses Skript</h2><p>Arbeite von oben nach unten oder springe gezielt zu einem Kapitel. Öffne Hilfen erst, wenn du festhängst. Lösungen sind zum Kontrollieren gedacht, nicht zum Überspringen des Denkwegs.</p></div></div><div class="toc-grid"><a href="#k1"><b>Kapitel 1 </b><span>Zufallsexperimente, relative Häufigkeit und Simulation</span></a><a href="#k2"><b>Kapitel 2 </b><span>Wahrscheinlichkeit und Ereignisse</span></a><a href="#k3"><b>Kapitel 3 </b><span>Zählstrategien und Kombinatorik</span></a><a href="#k4"><b>Kapitel 4 </b><span>Mehrstufige Zufallsexperimente</span></a><a href="#k5"><b>Kapitel 5 </b><span>Bernoulli-Kette und Binomialverteilung</span></a><a href="#k6"><b>Kapitel 6 </b><span>Erwartungswert, Varianz und Standardabweichung</span></a><a href="#k7"><b>Kapitel 7 </b><span>Hypothesentests und Entscheidungen</span></a></div></div></section>
+    <section id="skript"><div class="wrap"><div class="section-head"><div><h2>Kapitel und Wocheneinheiten</h2><p>Die Kapitel folgen der vorhandenen Lernlandkarte: vom Experiment über Wahrscheinlichkeiten und Baumdiagramme zur Binomialverteilung und zum Hypothesentest.</p></div><button class="interactive-only" id="openAll" type="button">Alle Hilfen/Lösungen öffnen</button><button class="interactive-only" id="closeAll" type="button">Alle Hilfen/Lösungen schließen</button></div>
+    <section class="chapter" id="k1">
+      <div class="chapter-head">
+        <div><span class="chapter-kicker">K1</span><h2>Kapitel 1 · Zufallsexperimente, relative Häufigkeit und Simulation</h2></div>
+        <div class="chapter-links"><a class="mini-link" href="#u1">Woche 1: Zufallsexperimente im Sport- und Biologiekontext</a><a class="mini-link" href="#u2">Woche 2: Simulation und empirisches Gesetz der großen Zahlen</a></div>
+      </div>
+      
+      <article class="unit" id="u1" data-unit>
+        <div class="unit-head">
+          <span class="week-badge">Woche 1</span>
+          <div>
+            <h3>Zufallsexperimente im Sport- und Biologiekontext</h3>
+            <p class="muted">Zeitbezug: Woche 1 · Lernblock im Halbjahresskript</p>
+          </div>
+          <label class="done-line"><input type="checkbox" class="done" data-id="u1"> erledigt</label>
+        </div>
+        <div class="unit-grid">
+          <section class="card light"><h4>1 · Lernziele</h4><ul><li>Du erkennst, wann ein Vorgang ein Zufallsexperiment ist.</li><li>Du unterscheidest Ergebnis, Ergebnismenge und Ereignis.</li><li>Du planst eine faire kleine Datenerhebung.</li></ul></section>
+          <section class="card light"><h4>2 · Einstieg / Problemfrage</h4><p>Eine Gruppe testet beim Basketball 60 Freiwürfe und trifft 18-mal. Ist die Trefferquote dadurch „sicher“ 30 Prozent – oder nur ein Messwert?</p></section>
+        </div>
+        <section class="card"><h4>3 · Grundwissen verständlich erklärt</h4><p>Ein Zufallsexperiment hat mehrere mögliche Ergebnisse, aber vor der Durchführung ist nicht sicher, welches Ergebnis eintritt. Im Unterricht denken wir oft in Sport- oder Biologie-Situationen: Treffer oder Fehlwurf, gesund oder krank, Keimung oder keine Keimung, Sieg oder Niederlage. Wichtig ist: Die Bedingungen müssen klar sein, sonst kann man Ergebnisse nicht sinnvoll vergleichen.</p><div class="tagrow"><b>Zentrale Begriffe:</b><span class="tag">Zufallsexperiment</span><span class="tag">Ergebnis</span><span class="tag">Ergebnismenge Ω</span><span class="tag">Ereignis</span><span class="tag">relative Häufigkeit</span></div></section>
+        <section class="callout"><b>Merksatz:</b> Erst wenn Versuch, Ergebnis und Ereignis sauber festgelegt sind, kannst du sinnvoll rechnen.</section>
+        <section class="card"><h4>4 · Beispiel</h4><p>Beim Freiwurfexperiment ist ein einzelner Wurf das Zufallsexperiment. Die Ergebnismenge ist {Treffer, Fehlwurf}. Das Ereignis A kann „Treffer“ heißen. Bei 18 Treffern in 60 Würfen ist die relative Häufigkeit <span class="formula" role="math" aria-label="18 durch 60 gleich 0,30"><math><mrow><mfrac><mn>18</mn><mn>60</mn></mfrac><mo>=</mo><mn>0,30</mn></mrow></math></span>, also 30 Prozent.</p></section>
+        <section class="card task" data-check data-answer="0.3" data-tol="0.001">
+          <h4>5 · Interaktive Übung</h4>
+          <p>Gib die Trefferzahl ein und prüfe die relative Häufigkeit.</p>
+          <label>18 Treffer bei 60 Versuchen: Wie groß ist die relative Häufigkeit als Dezimalzahl?<input type="number" step="any" class="check-input" placeholder="Dein Ergebnis"></label>
+          <button class="check-btn primary" type="button">Antwort prüfen</button>
+          <div class="task-feedback" aria-live="polite"></div>
+        </section>
+        <section class="card"><h4>6 · Aufgaben zum Üben</h4>
+          <ol>
+            <li>Erkläre die Idee dieser Einheit in zwei Sätzen.</li>
+            <li>Bearbeite die interaktive Übung und schreibe einen Antwortsatz.</li>
+            <li>Übertrage die Idee auf ein eigenes Beispiel aus Sport, Biologie oder Alltag.</li>
+          </ol>
+          <div class="help-stack">
+            <details><summary>Hilfe 1: Denkimpuls</summary><p>Frage dich: Wie oft ist das Ereignis eingetreten?</p></details>
+            <details><summary>Hilfe 2: Formel / Strategie</summary><p>Nutze die Formel <span class="formula" role="math" aria-label="relative Häufigkeit h n gleich H durch n"><math><mrow><msub><mi>h</mi><mi>n</mi></msub><mo>=</mo><mfrac><mi>H</mi><mi>n</mi></mfrac></mrow></math></span>.</p></details>
+            <details><summary>Hilfe 3: Zwischenschritt</summary><p>Setze H = 18 und n = 60 ein.</p></details>
+            <details class="solution"><summary>Lösung anzeigen</summary><p>Es gilt H = 18 und n = 60. Also ist h = 18 : 60 = 0,30. Antwortsatz: Die relative Häufigkeit beträgt 0,30 beziehungsweise 30 Prozent.</p></details>
+          </div>
+        </section>
+        <section class="card warn"><h4>7 · Typischer Fehler</h4><p>Verwechsle die Anzahl der Treffer nicht mit der Wahrscheinlichkeit. 18 ist eine Anzahl, 0,30 ist ein Anteil.</p></section>
+        <section class="card miniq" data-choice>
+          <h4>8 · Mini-Selbstcheck</h4>
+          <p>Was muss vor einer Datenerhebung klar festgelegt sein?</p>
+          <div class="answers">
+            <button type="button" data-good="true">Was als Treffer/Ereignis zählt.</button>
+            <button type="button" data-good="false">Nur die Lieblingsmannschaft der Gruppe.</button>
+          </div>
+          <div class="choice-feedback" aria-live="polite"></div>
+        </section>
+        <section class="card"><h4>9 · Sicherung und Exit-Ticket</h4><p><b>Zusammenfassung:</b> Du kannst ein Zufallsexperiment sauber beschreiben und relative Häufigkeiten als Anteil deuten.</p><p><b>Exit-Ticket:</b> Formuliere selbst ein Zufallsexperiment aus Sport oder Biologie und nenne seine Ergebnismenge.</p><p class="source-note">Quellenhinweis: DJP Station 1; Fachlehrplan Mathematik GK: Wahrscheinlichkeitsrechnung in anwendungsbezogenen Situationen.</p></section>
+      </article>
+      <article class="unit" id="u2" data-unit>
+        <div class="unit-head">
+          <span class="week-badge">Woche 2</span>
+          <div>
+            <h3>Simulation und empirisches Gesetz der großen Zahlen</h3>
+            <p class="muted">Zeitbezug: Woche 2 · Lernblock im Halbjahresskript</p>
+          </div>
+          <label class="done-line"><input type="checkbox" class="done" data-id="u2"> erledigt</label>
+        </div>
+        <div class="unit-grid">
+          <section class="card light"><h4>1 · Lernziele</h4><ul><li>Du erklärst, warum Simulationen beim Schätzen helfen.</li><li>Du beobachtest, dass relative Häufigkeiten bei vielen Versuchen stabiler werden.</li><li>Du unterscheidest Modellwahrscheinlichkeit und beobachtete Häufigkeit.</li></ul></section>
+          <section class="card light"><h4>2 · Einstieg / Problemfrage</h4><p>Ein Team möchte wissen, wie stabil eine Trefferquote ist. Reichen 10 Würfe? 100 Würfe? 1000 simulierte Würfe?</p></section>
+        </div>
+        <section class="card"><h4>3 · Grundwissen verständlich erklärt</h4><p>Eine Simulation ersetzt nicht die Wirklichkeit, aber sie macht ein Zufallsmodell schnell erfahrbar. Beim empirischen Gesetz der großen Zahlen nähert sich die relative Häufigkeit bei vielen Wiederholungen oft der Modellwahrscheinlichkeit an. Das heißt nicht, dass jeder kurze Abschnitt genau passt. Zufall schwankt, besonders bei kleinen Stichproben.</p><div class="tagrow"><b>Zentrale Begriffe:</b><span class="tag">Simulation</span><span class="tag">Modellwahrscheinlichkeit</span><span class="tag">Schwankung</span><span class="tag">Stichprobengröße</span><span class="tag">Gesetz der großen Zahlen</span></div></section>
+        <section class="callout"><b>Merksatz:</b> Je größer die Versuchszahl, desto stabiler wird die relative Häufigkeit meist – einzelne Abweichungen bleiben aber möglich.</section>
+        <section class="card"><h4>4 · Beispiel</h4><p>Wenn ein Modell p = 0,35 annimmt und bei 1000 Simulationen 360 Treffer auftreten, ist <span class="formula" role="math" aria-label="relative Häufigkeit 0,36"><math><mrow><msub><mi>h</mi><mi>1000</mi></msub><mo>=</mo><mfrac><mn>360</mn><mn>1000</mn></mfrac><mo>=</mo><mn>0,36</mn></mrow></math></span>. Die Abweichung zum Modell beträgt 0,01.</p></section>
+        <section class="card task" data-check data-answer="0.36" data-tol="0.001">
+          <h4>5 · Interaktive Übung</h4>
+          <p>Nutze im Stochastik-Labor die Simulation „Große Zahlen“. Beobachte die Kurve für n = 200, n = 1000 und n = 5000.</p>
+          <label>Bei 360 Treffern in 1000 Versuchen: Wie groß ist die relative Häufigkeit?<input type="number" step="any" class="check-input" placeholder="Dein Ergebnis"></label>
+          <button class="check-btn primary" type="button">Antwort prüfen</button>
+          <div class="task-feedback" aria-live="polite"></div>
+        </section>
+        <section class="card"><h4>6 · Aufgaben zum Üben</h4>
+          <ol>
+            <li>Erkläre die Idee dieser Einheit in zwei Sätzen.</li>
+            <li>Bearbeite die interaktive Übung und schreibe einen Antwortsatz.</li>
+            <li>Übertrage die Idee auf ein eigenes Beispiel aus Sport, Biologie oder Alltag.</li>
+          </ol>
+          <div class="help-stack">
+            <details><summary>Hilfe 1: Denkimpuls</summary><p>Teile Trefferzahl durch Versuchszahl.</p></details>
+            <details><summary>Hilfe 2: Formel / Strategie</summary><p>Trefferzahl H = 360, Versuchszahl n = 1000.</p></details>
+            <details><summary>Hilfe 3: Zwischenschritt</summary><p>360 : 1000 verschiebt das Komma drei Stellen nach links.</p></details>
+            <details class="solution"><summary>Lösung anzeigen</summary><p>h = 360 : 1000 = 0,36. Antwortsatz: Die beobachtete relative Häufigkeit beträgt 36 Prozent.</p></details>
+          </div>
+        </section>
+        <section class="card warn"><h4>7 · Typischer Fehler</h4><p>Das Gesetz der großen Zahlen ist keine Garantie, dass nach wenigen Versuchen genau p herauskommt.</p></section>
+        <section class="card miniq" data-choice>
+          <h4>8 · Mini-Selbstcheck</h4>
+          <p>Was wird bei vielen Wiederholungen meist stabiler?</p>
+          <div class="answers">
+            <button type="button" data-good="true">Die relative Häufigkeit.</button>
+            <button type="button" data-good="false">Die Ergebnismenge.</button>
+          </div>
+          <div class="choice-feedback" aria-live="polite"></div>
+        </section>
+        <section class="card"><h4>9 · Sicherung und Exit-Ticket</h4><p><b>Zusammenfassung:</b> Du kannst Simulationen als Werkzeug nutzen, um zufällige Schwankungen sichtbar zu machen.</p><p><b>Exit-Ticket:</b> Beschreibe in einem Satz, warum kleine Stichproben bei Wahrscheinlichkeiten gefährlich sein können.</p><p class="source-note">Quellenhinweis: DJP Station 1; Serlo: relative Häufigkeit und Gesetz der großen Zahlen.</p></section>
+      </article>
+    </section>
+    
+    <section class="chapter" id="k2">
+      <div class="chapter-head">
+        <div><span class="chapter-kicker">K2</span><h2>Kapitel 2 · Wahrscheinlichkeit und Ereignisse</h2></div>
+        <div class="chapter-links"><a class="mini-link" href="#u3">Woche 3: Vom Versuch zur Modellwahrscheinlichkeit</a><a class="mini-link" href="#u4">Woche 4: Schnitt, Vereinigung und Differenz von Ereignissen</a></div>
+      </div>
+      
+      <article class="unit" id="u3" data-unit>
+        <div class="unit-head">
+          <span class="week-badge">Woche 3</span>
+          <div>
+            <h3>Vom Versuch zur Modellwahrscheinlichkeit</h3>
+            <p class="muted">Zeitbezug: Woche 3 · Lernblock im Halbjahresskript</p>
+          </div>
+          <label class="done-line"><input type="checkbox" class="done" data-id="u3"> erledigt</label>
+        </div>
+        <div class="unit-grid">
+          <section class="card light"><h4>1 · Lernziele</h4><ul><li>Du beschreibst Wahrscheinlichkeit als Zahl zwischen 0 und 1.</li><li>Du berechnest einfache Laplace-Wahrscheinlichkeiten.</li><li>Du formulierst passende Gegenereignisse.</li></ul></section>
+          <section class="card light"><h4>2 · Einstieg / Problemfrage</h4><p>Beim fairen Würfel ist „gerade Zahl“ intuitiv wahrscheinlicher als „eine 6“ – aber wie begründet man das sauber?</p></section>
+        </div>
+        <section class="card"><h4>3 · Grundwissen verständlich erklärt</h4><p>Bei einem Laplace-Experiment sind alle Elementarergebnisse gleich wahrscheinlich. Dann kannst du die Wahrscheinlichkeit eines Ereignisses über günstige und mögliche Ergebnisse berechnen. Das Gegenereignis enthält genau alle Ergebnisse, die nicht zu A gehören.</p><div class="tagrow"><b>Zentrale Begriffe:</b><span class="tag">Laplace-Experiment</span><span class="tag">günstige Ergebnisse</span><span class="tag">mögliche Ergebnisse</span><span class="tag">Gegenereignis</span><span class="tag">Modellannahme</span></div></section>
+        <section class="callout"><b>Merksatz:</b> Bei Laplace gilt: Wahrscheinlichkeit = günstige Ergebnisse geteilt durch mögliche Ergebnisse.</section>
+        <section class="card"><h4>4 · Beispiel</h4><p>Beim fairen Würfel hat A = „gerade Zahl“ die günstigen Ergebnisse {2,4,6}. Es gibt 6 mögliche Ergebnisse. Also gilt <span class="formula" role="math" aria-label="P von A ist 0,5"><math><mrow><mi>P</mi><mo>(</mo><mi>A</mi><mo>)</mo><mo>=</mo><mfrac><mn>3</mn><mn>6</mn></mfrac><mo>=</mo><mn>0,5</mn></mrow></math></span>.</p></section>
+        <section class="card task" data-check data-answer="0.5" data-tol="0.001">
+          <h4>5 · Interaktive Übung</h4>
+          <p>Nutze den Ereignisrechner im Labor für Würfelereignisse und vergleiche Gegenereignis, Vereinigung und Schnitt.</p>
+          <label>Beim fairen Würfel: Wie groß ist P(gerade Zahl) als Dezimalzahl?<input type="number" step="any" class="check-input" placeholder="Dein Ergebnis"></label>
+          <button class="check-btn primary" type="button">Antwort prüfen</button>
+          <div class="task-feedback" aria-live="polite"></div>
+        </section>
+        <section class="card"><h4>6 · Aufgaben zum Üben</h4>
+          <ol>
+            <li>Erkläre die Idee dieser Einheit in zwei Sätzen.</li>
+            <li>Bearbeite die interaktive Übung und schreibe einen Antwortsatz.</li>
+            <li>Übertrage die Idee auf ein eigenes Beispiel aus Sport, Biologie oder Alltag.</li>
+          </ol>
+          <div class="help-stack">
+            <details><summary>Hilfe 1: Denkimpuls</summary><p>Zähle die geraden Augenzahlen.</p></details>
+            <details><summary>Hilfe 2: Formel / Strategie</summary><p>Nutze günstige durch mögliche Ergebnisse.</p></details>
+            <details><summary>Hilfe 3: Zwischenschritt</summary><p>Es gibt drei günstige Zahlen und sechs mögliche Zahlen.</p></details>
+            <details class="solution"><summary>Lösung anzeigen</summary><p>Günstig sind 2, 4 und 6. Das sind 3 von 6 Ergebnissen. 3 : 6 = 0,5. Antwortsatz: Die Wahrscheinlichkeit beträgt 0,5 bzw. 50 Prozent.</p></details>
+          </div>
+        </section>
+        <section class="card warn"><h4>7 · Typischer Fehler</h4><p>Laplace darfst du nur verwenden, wenn die Ergebnisse tatsächlich gleich wahrscheinlich modelliert werden.</p></section>
+        <section class="card miniq" data-choice>
+          <h4>8 · Mini-Selbstcheck</h4>
+          <p>Welche Zahl kann eine Wahrscheinlichkeit nicht sein?</p>
+          <div class="answers">
+            <button type="button" data-good="true">1,3.</button>
+            <button type="button" data-good="false">0,25.</button>
+          </div>
+          <div class="choice-feedback" aria-live="polite"></div>
+        </section>
+        <section class="card"><h4>9 · Sicherung und Exit-Ticket</h4><p><b>Zusammenfassung:</b> Du berechnest einfache Wahrscheinlichkeiten und formulierst Gegenereignisse.</p><p><b>Exit-Ticket:</b> Nenne zu A = „mindestens 5 würfeln“ das Gegenereignis.</p><p class="source-note">Quellenhinweis: DJP Station 2; Serlo: Wahrscheinlichkeit und relative Häufigkeit.</p></section>
+      </article>
+      <article class="unit" id="u4" data-unit>
+        <div class="unit-head">
+          <span class="week-badge">Woche 4</span>
+          <div>
+            <h3>Schnitt, Vereinigung und Differenz von Ereignissen</h3>
+            <p class="muted">Zeitbezug: Woche 4 · Lernblock im Halbjahresskript</p>
+          </div>
+          <label class="done-line"><input type="checkbox" class="done" data-id="u4"> erledigt</label>
+        </div>
+        <div class="unit-grid">
+          <section class="card light"><h4>1 · Lernziele</h4><ul><li>Du deutest ∩, ∪ und Gegenereignis in Worten.</li><li>Du berechnest Ereignismengen bei Würfelereignissen.</li><li>Du nutzt die Additionsregel in einfachen Fällen.</li></ul></section>
+          <section class="card light"><h4>2 · Einstieg / Problemfrage</h4><p>A = gerade Zahl und B = mindestens 4. Welche Ergebnisse gehören zu A und B gleichzeitig?</p></section>
+        </div>
+        <section class="card"><h4>3 · Grundwissen verständlich erklärt</h4><p>Der Schnitt A ∩ B enthält Ergebnisse, die in A und in B liegen. Die Vereinigung A ∪ B enthält Ergebnisse, die in A oder in B oder in beiden liegen. Bei Wahrscheinlichkeiten musst du aufpassen: Der Schnitt darf bei der Addition nicht doppelt gezählt werden. Deshalb gilt <span class="formula" role="math" aria-label="Additionsregel"><math><mrow><mi>P</mi><mo>(</mo><mi>A</mi><mo>∪</mo><mi>B</mi><mo>)</mo><mo>=</mo><mi>P</mi><mo>(</mo><mi>A</mi><mo>)</mo><mo>+</mo><mi>P</mi><mo>(</mo><mi>B</mi><mo>)</mo><mo>−</mo><mi>P</mi><mo>(</mo><mi>A</mi><mo>∩</mo><mi>B</mi><mo>)</mo></mrow></math></span>.</p><div class="tagrow"><b>Zentrale Begriffe:</b><span class="tag">Schnittmenge</span><span class="tag">Vereinigungsmenge</span><span class="tag">Differenz</span><span class="tag">disjunkt</span><span class="tag">Additionsregel</span></div></section>
+        <section class="callout"><b>Merksatz:</b> „Und“ bedeutet Schnitt, „oder“ bedeutet Vereinigung. Beim Oder wird der gemeinsame Teil nur einmal gezählt.</section>
+        <section class="card"><h4>4 · Beispiel</h4><p>A = {2,4,6}, B = {4,5,6}. Dann ist A ∩ B = {4,6} und A ∪ B = {2,4,5,6}.</p></section>
+        <section class="card task" data-check data-answer="2" data-tol="0.001">
+          <h4>5 · Interaktive Übung</h4>
+          <p>Nutze den Ereignisrechner im Stochastik-Labor. Gib A = 2,4,6 und B = 4,5,6 ein.</p>
+          <label>A = {2,4,6}, B = {4,5,6}: Wie viele Ergebnisse hat A ∩ B?<input type="number" step="any" class="check-input" placeholder="Dein Ergebnis"></label>
+          <button class="check-btn primary" type="button">Antwort prüfen</button>
+          <div class="task-feedback" aria-live="polite"></div>
+        </section>
+        <section class="card"><h4>6 · Aufgaben zum Üben</h4>
+          <ol>
+            <li>Erkläre die Idee dieser Einheit in zwei Sätzen.</li>
+            <li>Bearbeite die interaktive Übung und schreibe einen Antwortsatz.</li>
+            <li>Übertrage die Idee auf ein eigenes Beispiel aus Sport, Biologie oder Alltag.</li>
+          </ol>
+          <div class="help-stack">
+            <details><summary>Hilfe 1: Denkimpuls</summary><p>Suche nur die Zahlen, die in beiden Mengen vorkommen.</p></details>
+            <details><summary>Hilfe 2: Formel / Strategie</summary><p>A ∩ B bedeutet „A und B“.</p></details>
+            <details><summary>Hilfe 3: Zwischenschritt</summary><p>Markiere A und B farbig; die doppelt markierten Zahlen zählen.</p></details>
+            <details class="solution"><summary>Lösung anzeigen</summary><p>In beiden Mengen liegen die 4 und die 6. Also hat A ∩ B zwei Ergebnisse. Antwortsatz: Der Schnitt enthält 2 Ergebnisse.</p></details>
+          </div>
+        </section>
+        <section class="card warn"><h4>7 · Typischer Fehler</h4><p>Das Wort „oder“ ist in der Mathematik meistens einschließend: A oder B oder beide.</p></section>
+        <section class="card miniq" data-choice>
+          <h4>8 · Mini-Selbstcheck</h4>
+          <p>Welche Formulierung passt zu A ∩ B?</p>
+          <div class="answers">
+            <button type="button" data-good="true">A und B treten ein.</button>
+            <button type="button" data-good="false">A tritt nicht ein.</button>
+          </div>
+          <div class="choice-feedback" aria-live="polite"></div>
+        </section>
+        <section class="card"><h4>9 · Sicherung und Exit-Ticket</h4><p><b>Zusammenfassung:</b> Du kannst Ereignisse sprachlich, mengenmäßig und rechnerisch verbinden.</p><p><b>Exit-Ticket:</b> Bilde zu A = {1,3,5} und B = {3,4,5} die Vereinigung.</p><p class="source-note">Quellenhinweis: DJP Station 2; Serlo: Ereignisse und Mengen in der Stochastik.</p></section>
+      </article>
+    </section>
+    
+    <section class="chapter" id="k3">
+      <div class="chapter-head">
+        <div><span class="chapter-kicker">K3</span><h2>Kapitel 3 · Zählstrategien und Kombinatorik</h2></div>
+        <div class="chapter-links"><a class="mini-link" href="#u5">Woche 5: Produktregel: systematisch zählen statt raten</a><a class="mini-link" href="#u6">Woche 6: Auswählen ohne Reihenfolge: Kombinationen</a></div>
+      </div>
+      
+      <article class="unit" id="u5" data-unit>
+        <div class="unit-head">
+          <span class="week-badge">Woche 5</span>
+          <div>
+            <h3>Produktregel: systematisch zählen statt raten</h3>
+            <p class="muted">Zeitbezug: Woche 5 · Lernblock im Halbjahresskript</p>
+          </div>
+          <label class="done-line"><input type="checkbox" class="done" data-id="u5"> erledigt</label>
+        </div>
+        <div class="unit-grid">
+          <section class="card light"><h4>1 · Lernziele</h4><ul><li>Du nutzt die Produktregel für mehrstufige Entscheidungen.</li><li>Du erkennst geordnete Auswahlprobleme.</li><li>Du vermeidest Doppelzählungen.</li></ul></section>
+          <section class="card light"><h4>2 · Einstieg / Problemfrage</h4><p>Ein Trainingsplan bietet 4 Aufwärmübungen und danach 3 Technikübungen. Wie viele geordnete Kombinationen gibt es?</p></section>
+        </div>
+        <section class="card"><h4>3 · Grundwissen verständlich erklärt</h4><p>Wenn eine erste Entscheidung m Möglichkeiten hat und danach unabhängig davon eine zweite Entscheidung r Möglichkeiten hat, gibt es insgesamt m · r geordnete Möglichkeiten. Diese Idee steckt auch in Baumdiagrammen: Jede Stufe vervielfacht die Anzahl der Pfade.</p><div class="tagrow"><b>Zentrale Begriffe:</b><span class="tag">Produktregel</span><span class="tag">geordnete Auswahl</span><span class="tag">Stufe</span><span class="tag">Pfad</span><span class="tag">systematisches Zählen</span></div></section>
+        <section class="callout"><b>Merksatz:</b> Bei nacheinander getroffenen Entscheidungen multiplizierst du die Möglichkeiten der Stufen.</section>
+        <section class="card"><h4>4 · Beispiel</h4><p>4 Aufwärmübungen und 3 Technikübungen ergeben <span class="formula" role="math" aria-label="4 mal 3 gleich 12"><math><mrow><mn>4</mn><mo>·</mo><mn>3</mn><mo>=</mo><mn>12</mn></mrow></math></span> mögliche zweistufige Trainingsfolgen.</p></section>
+        <section class="card task" data-check data-answer="12" data-tol="0.001">
+          <h4>5 · Interaktive Übung</h4>
+          <p>Baue im Kopf ein Baumdiagramm: erste Stufe 4 Äste, zweite Stufe je 3 Äste. Prüfe die Gesamtzahl.</p>
+          <label>Wie viele Möglichkeiten ergeben sich aus 4 Optionen in Stufe 1 und 3 Optionen in Stufe 2?<input type="number" step="any" class="check-input" placeholder="Dein Ergebnis"></label>
+          <button class="check-btn primary" type="button">Antwort prüfen</button>
+          <div class="task-feedback" aria-live="polite"></div>
+        </section>
+        <section class="card"><h4>6 · Aufgaben zum Üben</h4>
+          <ol>
+            <li>Erkläre die Idee dieser Einheit in zwei Sätzen.</li>
+            <li>Bearbeite die interaktive Übung und schreibe einen Antwortsatz.</li>
+            <li>Übertrage die Idee auf ein eigenes Beispiel aus Sport, Biologie oder Alltag.</li>
+          </ol>
+          <div class="help-stack">
+            <details><summary>Hilfe 1: Denkimpuls</summary><p>Zähle nicht additiv. Jede erste Wahl kann mit jeder zweiten Wahl kombiniert werden.</p></details>
+            <details><summary>Hilfe 2: Formel / Strategie</summary><p>Produktregel: Möglichkeiten der Stufen multiplizieren.</p></details>
+            <details><summary>Hilfe 3: Zwischenschritt</summary><p>A1 kann mit T1, T2, T3 kombiniert werden; das passiert für alle 4 Aufwärmübungen.</p></details>
+            <details class="solution"><summary>Lösung anzeigen</summary><p>Nach der Produktregel werden die Stufen multipliziert: 4 · 3 = 12. Antwortsatz: Es gibt 12 geordnete Möglichkeiten.</p></details>
+          </div>
+        </section>
+        <section class="card warn"><h4>7 · Typischer Fehler</h4><p>4 + 3 = 7 wäre falsch, weil damit nicht alle Paarungen gezählt werden.</p></section>
+        <section class="card miniq" data-choice>
+          <h4>8 · Mini-Selbstcheck</h4>
+          <p>Wann passt die Produktregel?</p>
+          <div class="answers">
+            <button type="button" data-good="true">Bei mehreren aufeinanderfolgenden Entscheidungen.</button>
+            <button type="button" data-good="false">Nur wenn es genau zwei Würfel gibt.</button>
+          </div>
+          <div class="choice-feedback" aria-live="polite"></div>
+        </section>
+        <section class="card"><h4>9 · Sicherung und Exit-Ticket</h4><p><b>Zusammenfassung:</b> Du kannst einfache mehrstufige Zählprobleme mit der Produktregel lösen.</p><p><b>Exit-Ticket:</b> Erfinde ein zweistufiges Beispiel aus deinem Alltag und berechne die Anzahl der Möglichkeiten.</p><p class="source-note">Quellenhinweis: DJP Station 3; Fachlehrplan Mathematik: Zählstrategien im Kontext von Wahrscheinlichkeit.</p></section>
+      </article>
+      <article class="unit" id="u6" data-unit>
+        <div class="unit-head">
+          <span class="week-badge">Woche 6</span>
+          <div>
+            <h3>Auswählen ohne Reihenfolge: Kombinationen</h3>
+            <p class="muted">Zeitbezug: Woche 6 · Lernblock im Halbjahresskript</p>
+          </div>
+          <label class="done-line"><input type="checkbox" class="done" data-id="u6"> erledigt</label>
+        </div>
+        <div class="unit-grid">
+          <section class="card light"><h4>1 · Lernziele</h4><ul><li>Du unterscheidest geordnete und ungeordnete Auswahl.</li><li>Du deutest Binomialkoeffizienten als Anzahl von Möglichkeiten.</li><li>Du nutzt einfache Kombinationen im Stochastik-Kontext.</li></ul></section>
+          <section class="card light"><h4>2 · Einstieg / Problemfrage</h4><p>Aus 10 Personen werden 3 für eine Auswertung ausgewählt. Die Reihenfolge der Namen ist egal. Wie viele Gruppen sind möglich?</p></section>
+        </div>
+        <section class="card"><h4>3 · Grundwissen verständlich erklärt</h4><p>Wenn die Reihenfolge keine Rolle spielt, zählt jede Gruppe nur einmal. Der Binomialkoeffizient beschreibt, wie viele Teilgruppen der Größe k aus n Objekten gebildet werden können. Das wird später bei der Binomialverteilung wichtig, weil die Trefferpositionen gezählt werden.</p><div class="tagrow"><b>Zentrale Begriffe:</b><span class="tag">Kombination</span><span class="tag">Reihenfolge</span><span class="tag">Binomialkoeffizient</span><span class="tag">n über k</span><span class="tag">Doppelzählung</span></div></section>
+        <section class="callout"><b>Merksatz:</b> Geordnet: Reihenfolge zählt. Ungeordnet: Nur die Auswahl zählt.</section>
+        <section class="card"><h4>4 · Beispiel</h4><p>Für 3 Personen aus 10 gilt <span class="formula" role="math" aria-label="10 über 3 gleich 120"><math><mrow><mrow><mo>(</mo><mfrac><mn>10</mn><mn>3</mn></mfrac><mo>)</mo></mrow><mo>=</mo><mn>120</mn></mrow></math></span>. Es gibt 120 Dreiergruppen.</p></section>
+        <section class="card task" data-check data-answer="120" data-tol="0.001">
+          <h4>5 · Interaktive Übung</h4>
+          <p>Prüfe mit dem Kombinatorik-Rechner im Labor verschiedene Werte für n und k.</p>
+          <label>Wie viele Dreiergruppen kann man aus 10 Personen bilden?<input type="number" step="any" class="check-input" placeholder="Dein Ergebnis"></label>
+          <button class="check-btn primary" type="button">Antwort prüfen</button>
+          <div class="task-feedback" aria-live="polite"></div>
+        </section>
+        <section class="card"><h4>6 · Aufgaben zum Üben</h4>
+          <ol>
+            <li>Erkläre die Idee dieser Einheit in zwei Sätzen.</li>
+            <li>Bearbeite die interaktive Übung und schreibe einen Antwortsatz.</li>
+            <li>Übertrage die Idee auf ein eigenes Beispiel aus Sport, Biologie oder Alltag.</li>
+          </ol>
+          <div class="help-stack">
+            <details><summary>Hilfe 1: Denkimpuls</summary><p>Die Reihenfolge ist egal, also nicht 10 · 9 · 8 als Endergebnis lassen.</p></details>
+            <details><summary>Hilfe 2: Formel / Strategie</summary><p>Teile durch die Anzahl der Reihenfolgen innerhalb einer Dreiergruppe.</p></details>
+            <details><summary>Hilfe 3: Zwischenschritt</summary><p>Eine Dreiergruppe kann intern auf 3 · 2 · 1 = 6 Arten sortiert werden.</p></details>
+            <details class="solution"><summary>Lösung anzeigen</summary><p>Der Binomialkoeffizient 10 über 3 ist 10 · 9 · 8 geteilt durch 3 · 2 · 1. Das ergibt 720 : 6 = 120. Antwortsatz: Es gibt 120 mögliche Gruppen.</p></details>
+          </div>
+        </section>
+        <section class="card warn"><h4>7 · Typischer Fehler</h4><p>Bei ungeordneten Gruppen führt reines Multiplizieren zu einer zu großen Anzahl.</p></section>
+        <section class="card miniq" data-choice>
+          <h4>8 · Mini-Selbstcheck</h4>
+          <p>Was zählt bei einer Kombination nicht?</p>
+          <div class="answers">
+            <button type="button" data-good="true">Die Reihenfolge innerhalb der Auswahl.</button>
+            <button type="button" data-good="false">Die Anzahl der ausgewählten Elemente.</button>
+          </div>
+          <div class="choice-feedback" aria-live="polite"></div>
+        </section>
+        <section class="card"><h4>9 · Sicherung und Exit-Ticket</h4><p><b>Zusammenfassung:</b> Du weißt, warum der Binomialkoeffizient Auswahlmöglichkeiten ohne Reihenfolge zählt.</p><p><b>Exit-Ticket:</b> Erkläre, warum ABC, ACB und BAC dieselbe Dreiergruppe sein können.</p><p class="source-note">Quellenhinweis: DJP Station 3; Serlo: Kombinatorik und Binomialkoeffizient.</p></section>
+      </article>
+    </section>
+    
+    <section class="chapter" id="k4">
+      <div class="chapter-head">
+        <div><span class="chapter-kicker">K4</span><h2>Kapitel 4 · Mehrstufige Zufallsexperimente</h2></div>
+        <div class="chapter-links"><a class="mini-link" href="#u7">Woche 7: Baumdiagramme und Pfadregel</a><a class="mini-link" href="#u8">Woche 8: Summenregel und Unabhängigkeit</a></div>
+      </div>
+      
+      <article class="unit" id="u7" data-unit>
+        <div class="unit-head">
+          <span class="week-badge">Woche 7</span>
+          <div>
+            <h3>Baumdiagramme und Pfadregel</h3>
+            <p class="muted">Zeitbezug: Woche 7 · Lernblock im Halbjahresskript</p>
+          </div>
+          <label class="done-line"><input type="checkbox" class="done" data-id="u7"> erledigt</label>
+        </div>
+        <div class="unit-grid">
+          <section class="card light"><h4>1 · Lernziele</h4><ul><li>Du zeichnest einfache Baumdiagramme.</li><li>Du berechnest Pfadwahrscheinlichkeiten durch Multiplikation.</li><li>Du formulierst Ereignisse als Menge von Pfaden.</li></ul></section>
+          <section class="card light"><h4>2 · Einstieg / Problemfrage</h4><p>Erst trainiert jemand regelmäßig mit Wahrscheinlichkeit 0,30. Danach besteht er bei regelmäßigem Training einen Test mit Wahrscheinlichkeit 0,60. Wie wahrscheinlich ist „regelmäßig und bestanden“?</p></section>
+        </div>
+        <section class="card"><h4>3 · Grundwissen verständlich erklärt</h4><p>Ein Baumdiagramm ordnet mehrstufige Zufallsexperimente. An jedem Ast steht eine bedingte Wahrscheinlichkeit für den nächsten Schritt. Die Pfadregel sagt: Wahrscheinlichkeiten entlang eines Pfades werden multipliziert.</p><div class="tagrow"><b>Zentrale Begriffe:</b><span class="tag">Baumdiagramm</span><span class="tag">Pfad</span><span class="tag">Pfadregel</span><span class="tag">bedingte Wahrscheinlichkeit</span><span class="tag">zweistufiger Versuch</span></div></section>
+        <section class="callout"><b>Merksatz:</b> Entlang eines Pfades wird multipliziert.</section>
+        <section class="card"><h4>4 · Beispiel</h4><p>Für regelmäßig und bestanden gilt <span class="formula" role="math" aria-label="0,30 mal 0,60 gleich 0,18"><math><mrow><mn>0,30</mn><mo>·</mo><mn>0,60</mn><mo>=</mo><mn>0,18</mn></mrow></math></span>. Also beträgt die Wahrscheinlichkeit 18 Prozent.</p></section>
+        <section class="card task" data-check data-answer="0.18" data-tol="0.001">
+          <h4>5 · Interaktive Übung</h4>
+          <p>Nutze im Labor den Baum-Rechner für Ziehen mit und ohne Zurücklegen. Vergleiche, wann sich die zweite Stufe ändert.</p>
+          <label>Berechne 0,30 · 0,60.<input type="number" step="any" class="check-input" placeholder="Dein Ergebnis"></label>
+          <button class="check-btn primary" type="button">Antwort prüfen</button>
+          <div class="task-feedback" aria-live="polite"></div>
+        </section>
+        <section class="card"><h4>6 · Aufgaben zum Üben</h4>
+          <ol>
+            <li>Erkläre die Idee dieser Einheit in zwei Sätzen.</li>
+            <li>Bearbeite die interaktive Übung und schreibe einen Antwortsatz.</li>
+            <li>Übertrage die Idee auf ein eigenes Beispiel aus Sport, Biologie oder Alltag.</li>
+          </ol>
+          <div class="help-stack">
+            <details><summary>Hilfe 1: Denkimpuls</summary><p>Es geht um „und“, also um einen Pfad.</p></details>
+            <details><summary>Hilfe 2: Formel / Strategie</summary><p>Pfadregel: Astwahrscheinlichkeiten multiplizieren.</p></details>
+            <details><summary>Hilfe 3: Zwischenschritt</summary><p>30 Prozent sind 0,30, 60 Prozent sind 0,60.</p></details>
+            <details class="solution"><summary>Lösung anzeigen</summary><p>0,30 · 0,60 = 0,18. Antwortsatz: Die Pfadwahrscheinlichkeit beträgt 0,18 beziehungsweise 18 Prozent.</p></details>
+          </div>
+        </section>
+        <section class="card warn"><h4>7 · Typischer Fehler</h4><p>Nicht addieren: 0,30 + 0,60 beschreibt keine Pfadwahrscheinlichkeit.</p></section>
+        <section class="card miniq" data-choice>
+          <h4>8 · Mini-Selbstcheck</h4>
+          <p>Welche Rechenart nutzt die Pfadregel?</p>
+          <div class="answers">
+            <button type="button" data-good="true">Multiplikation.</button>
+            <button type="button" data-good="false">Subtraktion.</button>
+          </div>
+          <div class="choice-feedback" aria-live="polite"></div>
+        </section>
+        <section class="card"><h4>9 · Sicherung und Exit-Ticket</h4><p><b>Zusammenfassung:</b> Du kannst Pfadwahrscheinlichkeiten in Baumdiagrammen berechnen.</p><p><b>Exit-Ticket:</b> Nenne ein Beispiel aus Biologie oder Sport für ein zweistufiges Zufallsexperiment.</p><p class="source-note">Quellenhinweis: DJP Station 4; Serlo: Baumdiagramm und Pfadregeln.</p></section>
+      </article>
+      <article class="unit" id="u8" data-unit>
+        <div class="unit-head">
+          <span class="week-badge">Woche 8</span>
+          <div>
+            <h3>Summenregel und Unabhängigkeit</h3>
+            <p class="muted">Zeitbezug: Woche 8 · Lernblock im Halbjahresskript</p>
+          </div>
+          <label class="done-line"><input type="checkbox" class="done" data-id="u8"> erledigt</label>
+        </div>
+        <div class="unit-grid">
+          <section class="card light"><h4>1 · Lernziele</h4><ul><li>Du addierst mehrere passende Pfade zu einem Ereignis.</li><li>Du prüfst einfache Unabhängigkeit.</li><li>Du erkennst den Unterschied zwischen „oder“ und „und“.</li></ul></section>
+          <section class="card light"><h4>2 · Einstieg / Problemfrage</h4><p>Ein Ereignis kann über mehrere Pfade eintreten. Wann addierst du, wann multiplizierst du?</p></section>
+        </div>
+        <section class="card"><h4>3 · Grundwissen verständlich erklärt</h4><p>Die Summenregel sagt: Gehören mehrere disjunkte Pfade zu einem Ereignis, addierst du ihre Pfadwahrscheinlichkeiten. Unabhängigkeit bedeutet: Das Eintreten eines Ereignisses verändert die Wahrscheinlichkeit des anderen Ereignisses nicht. Rechnerisch passt dann häufig <span class="formula" role="math" aria-label="Unabhängigkeit"><math><mrow><mi>P</mi><mo>(</mo><mi>A</mi><mo>∩</mo><mi>B</mi><mo>)</mo><mo>=</mo><mi>P</mi><mo>(</mo><mi>A</mi><mo>)</mo><mo>·</mo><mi>P</mi><mo>(</mo><mi>B</mi><mo>)</mo></mrow></math></span>.</p><div class="tagrow"><b>Zentrale Begriffe:</b><span class="tag">Summenregel</span><span class="tag">disjunkte Pfade</span><span class="tag">Unabhängigkeit</span><span class="tag">abhängig</span><span class="tag">bedingte Wahrscheinlichkeit</span></div></section>
+        <section class="callout"><b>Merksatz:</b> Innerhalb eines Pfades multiplizieren, verschiedene passende Pfade addieren.</section>
+        <section class="card"><h4>4 · Beispiel</h4><p>Wenn P(A) = 0,30 und P(B) = 0,70 unabhängig sind, dann ist P(A ∩ B) = 0,30 · 0,70 = 0,21.</p></section>
+        <section class="card task" data-check data-answer="0.21" data-tol="0.001">
+          <h4>5 · Interaktive Übung</h4>
+          <p>Nutze den Baum-Rechner und beobachte: Beim Ziehen ohne Zurücklegen ändern sich die Wahrscheinlichkeiten auf Stufe 2.</p>
+          <label>Bei Unabhängigkeit: P(A)=0,30 und P(B)=0,70. Wie groß ist P(A ∩ B)?<input type="number" step="any" class="check-input" placeholder="Dein Ergebnis"></label>
+          <button class="check-btn primary" type="button">Antwort prüfen</button>
+          <div class="task-feedback" aria-live="polite"></div>
+        </section>
+        <section class="card"><h4>6 · Aufgaben zum Üben</h4>
+          <ol>
+            <li>Erkläre die Idee dieser Einheit in zwei Sätzen.</li>
+            <li>Bearbeite die interaktive Übung und schreibe einen Antwortsatz.</li>
+            <li>Übertrage die Idee auf ein eigenes Beispiel aus Sport, Biologie oder Alltag.</li>
+          </ol>
+          <div class="help-stack">
+            <details><summary>Hilfe 1: Denkimpuls</summary><p>Unabhängigkeit erlaubt die Multiplikation der Einzelwahrscheinlichkeiten.</p></details>
+            <details><summary>Hilfe 2: Formel / Strategie</summary><p>Setze P(A)=0,30 und P(B)=0,70 ein.</p></details>
+            <details><summary>Hilfe 3: Zwischenschritt</summary><p>3 · 7 = 21, also 0,30 · 0,70 = 0,21.</p></details>
+            <details class="solution"><summary>Lösung anzeigen</summary><p>Bei Unabhängigkeit gilt P(A ∩ B) = P(A) · P(B). Also 0,30 · 0,70 = 0,21. Antwortsatz: Die Schnittwahrscheinlichkeit beträgt 0,21.</p></details>
+          </div>
+        </section>
+        <section class="card warn"><h4>7 · Typischer Fehler</h4><p>Unabhängig heißt nicht „disjunkt“. Disjunkte Ereignisse können nicht gemeinsam eintreten.</p></section>
+        <section class="card miniq" data-choice>
+          <h4>8 · Mini-Selbstcheck</h4>
+          <p>Was machst du mit mehreren Pfaden, die gemeinsam ein Ereignis bilden?</p>
+          <div class="answers">
+            <button type="button" data-good="true">Ich addiere die Pfadwahrscheinlichkeiten.</button>
+            <button type="button" data-good="false">Ich nehme immer den größten Pfad.</button>
+          </div>
+          <div class="choice-feedback" aria-live="polite"></div>
+        </section>
+        <section class="card"><h4>9 · Sicherung und Exit-Ticket</h4><p><b>Zusammenfassung:</b> Du kannst mehrstufige Experimente über Pfad- und Summenregel auswerten.</p><p><b>Exit-Ticket:</b> Erkläre in einem Satz den Unterschied zwischen abhängig und unabhängig.</p><p class="source-note">Quellenhinweis: DJP Station 4; Serlo: Baumdiagramm und bedingte Wahrscheinlichkeit.</p></section>
+      </article>
+    </section>
+    
+    <section class="chapter" id="k5">
+      <div class="chapter-head">
+        <div><span class="chapter-kicker">K5</span><h2>Kapitel 5 · Bernoulli-Kette und Binomialverteilung</h2></div>
+        <div class="chapter-links"><a class="mini-link" href="#u9">Woche 9: Bernoulli-Versuche erkennen</a><a class="mini-link" href="#u10">Woche 10: Binomialformel verstehen und anwenden</a><a class="mini-link" href="#u11">Woche 11: Kumulierte Wahrscheinlichkeiten</a></div>
+      </div>
+      
+      <article class="unit" id="u9" data-unit>
+        <div class="unit-head">
+          <span class="week-badge">Woche 9</span>
+          <div>
+            <h3>Bernoulli-Versuche erkennen</h3>
+            <p class="muted">Zeitbezug: Woche 9 · Lernblock im Halbjahresskript</p>
+          </div>
+          <label class="done-line"><input type="checkbox" class="done" data-id="u9"> erledigt</label>
+        </div>
+        <div class="unit-grid">
+          <section class="card light"><h4>1 · Lernziele</h4><ul><li>Du erkennst zwei mögliche Ausgänge: Treffer oder Nichttreffer.</li><li>Du prüfst, ob p konstant bleibt.</li><li>Du unterscheidest Bernoulli-Versuch und Bernoulli-Kette.</li></ul></section>
+          <section class="card light"><h4>2 · Einstieg / Problemfrage</h4><p>20 Freiwürfe, jeder Wurf zählt nur als Treffer oder Fehlwurf. Wann darf man das als Bernoulli-Kette modellieren?</p></section>
+        </div>
+        <section class="card"><h4>3 · Grundwissen verständlich erklärt</h4><p>Ein Bernoulli-Versuch hat genau zwei Ausgänge: Erfolg und Misserfolg. Eine Bernoulli-Kette besteht aus n gleichartigen, unabhängigen Bernoulli-Versuchen mit gleicher Trefferwahrscheinlichkeit p. In echten Kontexten ist das ein Modell: Ermüdung, Training oder Nervosität können die Annahmen stören.</p><div class="tagrow"><b>Zentrale Begriffe:</b><span class="tag">Bernoulli-Versuch</span><span class="tag">Bernoulli-Kette</span><span class="tag">Treffer</span><span class="tag">Misserfolg</span><span class="tag">konstantes p</span></div></section>
+        <section class="callout"><b>Merksatz:</b> Bernoulli-Kette: genau zwei Ausgänge, feste Versuchszahl, gleiche Trefferwahrscheinlichkeit, Unabhängigkeit.</section>
+        <section class="card"><h4>4 · Beispiel</h4><p>20 Freiwürfe können modellhaft eine Bernoulli-Kette sein, wenn jeder Wurf als Treffer/Fehlwurf zählt, die Trefferwahrscheinlichkeit p gleich bleibt und die Würfe unabhängig angenommen werden.</p></section>
+        <section class="card task" data-check data-answer="2" data-tol="0.001">
+          <h4>5 · Interaktive Übung</h4>
+          <p>Nutze den Binomial-Rechner im Labor und ändere n und p. Beobachte, wie sich die Verteilung verschiebt.</p>
+          <label>Eine Bernoulli-Kette hat genau wie viele mögliche Ausgänge pro Einzelversuch?<input type="number" step="any" class="check-input" placeholder="Dein Ergebnis"></label>
+          <button class="check-btn primary" type="button">Antwort prüfen</button>
+          <div class="task-feedback" aria-live="polite"></div>
+        </section>
+        <section class="card"><h4>6 · Aufgaben zum Üben</h4>
+          <ol>
+            <li>Erkläre die Idee dieser Einheit in zwei Sätzen.</li>
+            <li>Bearbeite die interaktive Übung und schreibe einen Antwortsatz.</li>
+            <li>Übertrage die Idee auf ein eigenes Beispiel aus Sport, Biologie oder Alltag.</li>
+          </ol>
+          <div class="help-stack">
+            <details><summary>Hilfe 1: Denkimpuls</summary><p>Denke an Treffer oder Fehlwurf.</p></details>
+            <details><summary>Hilfe 2: Formel / Strategie</summary><p>Bernoulli bedeutet: Erfolg oder nicht Erfolg.</p></details>
+            <details><summary>Hilfe 3: Zwischenschritt</summary><p>Mehr als zwei Kategorien müssen vorher auf zwei zusammengefasst werden.</p></details>
+            <details class="solution"><summary>Lösung anzeigen</summary><p>Ein Bernoulli-Versuch hat genau zwei Ausgänge: Erfolg und Misserfolg. Antwortsatz: Pro Einzelversuch gibt es 2 mögliche Ausgänge.</p></details>
+          </div>
+        </section>
+        <section class="card warn"><h4>7 · Typischer Fehler</h4><p>Nicht jede Messreihe ist automatisch binomialverteilt. Die Modellannahmen müssen begründet werden.</p></section>
+        <section class="card miniq" data-choice>
+          <h4>8 · Mini-Selbstcheck</h4>
+          <p>Welche Annahme gehört zur Bernoulli-Kette?</p>
+          <div class="answers">
+            <button type="button" data-good="true">Die Trefferwahrscheinlichkeit bleibt gleich.</button>
+            <button type="button" data-good="false">Die Trefferwahrscheinlichkeit muss 0,5 sein.</button>
+          </div>
+          <div class="choice-feedback" aria-live="polite"></div>
+        </section>
+        <section class="card"><h4>9 · Sicherung und Exit-Ticket</h4><p><b>Zusammenfassung:</b> Du kannst begründen, wann die Binomialverteilung als Modell passt.</p><p><b>Exit-Ticket:</b> Nenne eine reale Situation, in der die Unabhängigkeit fraglich sein könnte.</p><p class="source-note">Quellenhinweis: DJP Station 5; Serlo: Bernoulli-Kette und Binomialverteilung.</p></section>
+      </article>
+      <article class="unit" id="u10" data-unit>
+        <div class="unit-head">
+          <span class="week-badge">Woche 10</span>
+          <div>
+            <h3>Binomialformel verstehen und anwenden</h3>
+            <p class="muted">Zeitbezug: Woche 10 · Lernblock im Halbjahresskript</p>
+          </div>
+          <label class="done-line"><input type="checkbox" class="done" data-id="u10"> erledigt</label>
+        </div>
+        <div class="unit-grid">
+          <section class="card light"><h4>1 · Lernziele</h4><ul><li>Du deutest n, p und k in der Binomialverteilung.</li><li>Du berechnest Einzelwahrscheinlichkeiten.</li><li>Du erklärst, warum der Binomialkoeffizient vorkommt.</li></ul></section>
+          <section class="card light"><h4>2 · Einstieg / Problemfrage</h4><p>Wie wahrscheinlich sind genau 6 Treffer bei 10 Versuchen, wenn p = 0,60 gilt?</p></section>
+        </div>
+        <section class="card"><h4>3 · Grundwissen verständlich erklärt</h4><p>Die Binomialverteilung zählt die Anzahl X der Treffer in einer Bernoulli-Kette. Für genau k Treffer gilt die Binomialformel. Der Binomialkoeffizient zählt, an welchen Positionen die k Treffer liegen können.</p><div class="tagrow"><b>Zentrale Begriffe:</b><span class="tag">Zufallsgröße X</span><span class="tag">n</span><span class="tag">p</span><span class="tag">k</span><span class="tag">Binomialkoeffizient</span></div></section>
+        <section class="callout"><b>Merksatz:</b> Die Binomialformel verbindet Anzahl der Trefferplätze mit Treffer- und Fehlertwahrscheinlichkeiten.</section>
+        <section class="card"><h4>4 · Beispiel</h4><p>Für n = 10, p = 0,60, k = 6 gilt näherungsweise P(X = 6) = 0,2508. Das bedeutet: Genau 6 Treffer sind in diesem Modell mit etwa 25,1 Prozent wahrscheinlich.</p></section>
+        <section class="card task" data-check data-answer="0.2508" data-tol="0.0006">
+          <h4>5 · Interaktive Übung</h4>
+          <p>Nutze im Labor das Binomial-Histogramm. Stelle n = 10, p = 0,60 und k = 6 ein.</p>
+          <label>Gerundet auf vier Nachkommastellen: P(X = 6) bei n = 10 und p = 0,60?<input type="number" step="any" class="check-input" placeholder="Dein Ergebnis"></label>
+          <button class="check-btn primary" type="button">Antwort prüfen</button>
+          <div class="task-feedback" aria-live="polite"></div>
+        </section>
+        <section class="card"><h4>6 · Aufgaben zum Üben</h4>
+          <ol>
+            <li>Erkläre die Idee dieser Einheit in zwei Sätzen.</li>
+            <li>Bearbeite die interaktive Übung und schreibe einen Antwortsatz.</li>
+            <li>Übertrage die Idee auf ein eigenes Beispiel aus Sport, Biologie oder Alltag.</li>
+          </ol>
+          <div class="help-stack">
+            <details><summary>Hilfe 1: Denkimpuls</summary><p>Es geht um genau 6 Treffer, nicht um höchstens 6.</p></details>
+            <details><summary>Hilfe 2: Formel / Strategie</summary><p>Nutze die Binomialformel <span class="formula" role="math" aria-label="Binomialformel"><math><mrow><mi>P</mi><mo>(</mo><mi>X</mi><mo>=</mo><mi>k</mi><mo>)</mo><mo>=</mo><mrow><mo>(</mo><mfrac><mi>n</mi><mi>k</mi></mfrac><mo>)</mo><mo>·</mo><msup><mi>p</mi><mi>k</mi></msup><mo>·</mo><msup><mrow><mn>1</mn><mo>−</mo><mi>p</mi></mrow><mrow><mi>n</mi><mo>−</mo><mi>k</mi></mrow></msup></mrow></mrow></math></span>.</p></details>
+            <details><summary>Hilfe 3: Zwischenschritt</summary><p>Fehlwahrscheinlichkeit ist 1 − p = 0,40.</p></details>
+            <details class="solution"><summary>Lösung anzeigen</summary><p>Einsetzen in die Binomialformel ergibt P(X=6) = (10 über 6) · 0,60<sup>6</sup> · 0,40<sup>4</sup> ≈ 0,2508. Antwortsatz: Die Wahrscheinlichkeit beträgt etwa 25,08 Prozent.</p></details>
+          </div>
+        </section>
+        <section class="card warn"><h4>7 · Typischer Fehler</h4><p>Vergiss nicht den Binomialkoeffizienten. Ein Trefferbild ist nicht dasselbe wie alle möglichen Positionen.</p></section>
+        <section class="card miniq" data-choice>
+          <h4>8 · Mini-Selbstcheck</h4>
+          <p>Was beschreibt k in P(X = k)?</p>
+          <div class="answers">
+            <button type="button" data-good="true">Die Trefferzahl.</button>
+            <button type="button" data-good="false">Die Anzahl der verschiedenen Ereignisse.</button>
+          </div>
+          <div class="choice-feedback" aria-live="polite"></div>
+        </section>
+        <section class="card"><h4>9 · Sicherung und Exit-Ticket</h4><p><b>Zusammenfassung:</b> Du kannst Einzelwahrscheinlichkeiten der Binomialverteilung berechnen und interpretieren.</p><p><b>Exit-Ticket:</b> Warum ist P(X=6) nicht einfach 0,60<sup>6</sup>?</p><p class="source-note">Quellenhinweis: DJP Station 5; Serlo: Binomialverteilung.</p></section>
+      </article>
+      <article class="unit" id="u11" data-unit>
+        <div class="unit-head">
+          <span class="week-badge">Woche 11</span>
+          <div>
+            <h3>Kumulierte Wahrscheinlichkeiten</h3>
+            <p class="muted">Zeitbezug: Woche 11 · Lernblock im Halbjahresskript</p>
+          </div>
+          <label class="done-line"><input type="checkbox" class="done" data-id="u11"> erledigt</label>
+        </div>
+        <div class="unit-grid">
+          <section class="card light"><h4>1 · Lernziele</h4><ul><li>Du unterscheidest genau, höchstens und mindestens.</li><li>Du berechnest kumulierte Wahrscheinlichkeiten.</li><li>Du nutzt Gegenereignisse zur Vereinfachung.</li></ul></section>
+          <section class="card light"><h4>2 · Einstieg / Problemfrage</h4><p>Bei n = 5 und p = 0,20: Wie wahrscheinlich sind höchstens 2 Treffer?</p></section>
+        </div>
+        <section class="card"><h4>3 · Grundwissen verständlich erklärt</h4><p>Kumuliert bedeutet: mehrere Trefferzahlen werden zusammengefasst. „Höchstens 2“ heißt X ≤ 2, also 0, 1 oder 2 Treffer. „Mindestens 2“ heißt X ≥ 2. Gegenereignisse helfen besonders bei „mindestens“ oder „mehr als“ Aufgaben.</p><div class="tagrow"><b>Zentrale Begriffe:</b><span class="tag">kumuliert</span><span class="tag">höchstens</span><span class="tag">mindestens</span><span class="tag">Gegenereignis</span><span class="tag">Verteilungsfunktion</span></div></section>
+        <section class="callout"><b>Merksatz:</b> Lies Ungleichungen langsam: höchstens heißt kleiner gleich, mindestens heißt größer gleich.</section>
+        <section class="card"><h4>4 · Beispiel</h4><p>Für n = 5 und p = 0,20 ist P(X ≤ 2) = P(X=0)+P(X=1)+P(X=2) ≈ 0,9421.</p></section>
+        <section class="card task" data-check data-answer="0.9421" data-tol="0.0006">
+          <h4>5 · Interaktive Übung</h4>
+          <p>Nutze den Binomial-Rechner und schalte zwischen „genau“, „höchstens“ und „mindestens“ um.</p>
+          <label>Gerundet auf vier Nachkommastellen: P(X ≤ 2) bei n = 5, p = 0,20?<input type="number" step="any" class="check-input" placeholder="Dein Ergebnis"></label>
+          <button class="check-btn primary" type="button">Antwort prüfen</button>
+          <div class="task-feedback" aria-live="polite"></div>
+        </section>
+        <section class="card"><h4>6 · Aufgaben zum Üben</h4>
+          <ol>
+            <li>Erkläre die Idee dieser Einheit in zwei Sätzen.</li>
+            <li>Bearbeite die interaktive Übung und schreibe einen Antwortsatz.</li>
+            <li>Übertrage die Idee auf ein eigenes Beispiel aus Sport, Biologie oder Alltag.</li>
+          </ol>
+          <div class="help-stack">
+            <details><summary>Hilfe 1: Denkimpuls</summary><p>Höchstens 2 umfasst 0, 1 und 2.</p></details>
+            <details><summary>Hilfe 2: Formel / Strategie</summary><p>Berechne die drei Einzelwahrscheinlichkeiten und addiere sie.</p></details>
+            <details><summary>Hilfe 3: Zwischenschritt</summary><p>Achte darauf, k=2 einzuschließen, weil „höchstens 2“ kleiner gleich 2 bedeutet.</p></details>
+            <details class="solution"><summary>Lösung anzeigen</summary><p>P(X≤2) = P(0)+P(1)+P(2). Das ergibt 0,32768 + 0,40960 + 0,20480 = 0,94208. Antwortsatz: Die Wahrscheinlichkeit beträgt etwa 94,21 Prozent.</p></details>
+          </div>
+        </section>
+        <section class="card warn"><h4>7 · Typischer Fehler</h4><p>„Höchstens 2“ wird oft fälschlich als „weniger als 2“ gelesen. Das wäre X < 2.</p></section>
+        <section class="card miniq" data-choice>
+          <h4>8 · Mini-Selbstcheck</h4>
+          <p>Welche Trefferzahlen gehören zu X ≤ 2?</p>
+          <div class="answers">
+            <button type="button" data-good="true">0, 1 und 2.</button>
+            <button type="button" data-good="false">Nur 2.</button>
+          </div>
+          <div class="choice-feedback" aria-live="polite"></div>
+        </section>
+        <section class="card"><h4>9 · Sicherung und Exit-Ticket</h4><p><b>Zusammenfassung:</b> Du kannst kumulierte Binomialwahrscheinlichkeiten berechnen und sprachlich deuten.</p><p><b>Exit-Ticket:</b> Formuliere „mindestens 3 Treffer“ als Ungleichung mit X.</p><p class="source-note">Quellenhinweis: DJP Station 5; Serlo: kumulierte Binomialverteilung.</p></section>
+      </article>
+    </section>
+    
+    <section class="chapter" id="k6">
+      <div class="chapter-head">
+        <div><span class="chapter-kicker">K6</span><h2>Kapitel 6 · Erwartungswert, Varianz und Standardabweichung</h2></div>
+        <div class="chapter-links"><a class="mini-link" href="#u12">Woche 12: Erwartungswert als langfristiger Mittelwert</a><a class="mini-link" href="#u13">Woche 13: Streuung: Wie stark schwanken Ergebnisse?</a></div>
+      </div>
+      
+      <article class="unit" id="u12" data-unit>
+        <div class="unit-head">
+          <span class="week-badge">Woche 12</span>
+          <div>
+            <h3>Erwartungswert als langfristiger Mittelwert</h3>
+            <p class="muted">Zeitbezug: Woche 12 · Lernblock im Halbjahresskript</p>
+          </div>
+          <label class="done-line"><input type="checkbox" class="done" data-id="u12"> erledigt</label>
+        </div>
+        <div class="unit-grid">
+          <section class="card light"><h4>1 · Lernziele</h4><ul><li>Du berechnest den Erwartungswert einer Binomialverteilung.</li><li>Du deutest μ als langfristigen Mittelwert.</li><li>Du unterscheidest Erwartung und sichere Vorhersage.</li></ul></section>
+          <section class="card light"><h4>2 · Einstieg / Problemfrage</h4><p>Bei 80 Versuchen und p = 0,25 erwarten wir 20 Treffer. Heißt das, dass genau 20 Treffer kommen müssen?</p></section>
+        </div>
+        <section class="card"><h4>3 · Grundwissen verständlich erklärt</h4><p>Der Erwartungswert ist kein Versprechen für einen einzelnen Versuchsdurchgang. Er beschreibt, welcher Mittelwert langfristig zu erwarten ist. Bei der Binomialverteilung ist er besonders einfach: <span class="formula" role="math" aria-label="Erwartungswert"><math><mrow><mi>μ</mi><mo>=</mo><mi>n</mi><mo>·</mo><mi>p</mi></mrow></math></span>.</p><div class="tagrow"><b>Zentrale Begriffe:</b><span class="tag">Erwartungswert</span><span class="tag">Mittelwert</span><span class="tag">langfristig</span><span class="tag">Prognose</span><span class="tag">Zufallsgröße</span></div></section>
+        <section class="callout"><b>Merksatz:</b> Der Erwartungswert ist die Mitte des Modells, nicht das sichere Ergebnis.</section>
+        <section class="card"><h4>4 · Beispiel</h4><p>Bei n = 80 und p = 0,25 gilt μ = 80 · 0,25 = 20. Langfristig erwartet man also 20 Treffer pro 80 Versuche.</p></section>
+        <section class="card task" data-check data-answer="20" data-tol="0.001">
+          <h4>5 · Interaktive Übung</h4>
+          <p>Im Binomial-Histogramm liegt der Schwerpunkt ungefähr beim Erwartungswert. Ändere p und beobachte die Verschiebung.</p>
+          <label>Berechne μ bei n = 80 und p = 0,25.<input type="number" step="any" class="check-input" placeholder="Dein Ergebnis"></label>
+          <button class="check-btn primary" type="button">Antwort prüfen</button>
+          <div class="task-feedback" aria-live="polite"></div>
+        </section>
+        <section class="card"><h4>6 · Aufgaben zum Üben</h4>
+          <ol>
+            <li>Erkläre die Idee dieser Einheit in zwei Sätzen.</li>
+            <li>Bearbeite die interaktive Übung und schreibe einen Antwortsatz.</li>
+            <li>Übertrage die Idee auf ein eigenes Beispiel aus Sport, Biologie oder Alltag.</li>
+          </ol>
+          <div class="help-stack">
+            <details><summary>Hilfe 1: Denkimpuls</summary><p>Multipliziere Versuchszahl und Trefferwahrscheinlichkeit.</p></details>
+            <details><summary>Hilfe 2: Formel / Strategie</summary><p>Nutze die Formel <span class="formula" role="math" aria-label="Erwartungswert"><math><mrow><mi>μ</mi><mo>=</mo><mi>n</mi><mo>·</mo><mi>p</mi></mrow></math></span>.</p></details>
+            <details><summary>Hilfe 3: Zwischenschritt</summary><p>Ein Viertel von 80 ist 20.</p></details>
+            <details class="solution"><summary>Lösung anzeigen</summary><p>μ = n · p = 80 · 0,25 = 20. Antwortsatz: Der Erwartungswert beträgt 20 Treffer.</p></details>
+          </div>
+        </section>
+        <section class="card warn"><h4>7 · Typischer Fehler</h4><p>Der Erwartungswert muss nicht als tatsächliches Einzelergebnis auftreten.</p></section>
+        <section class="card miniq" data-choice>
+          <h4>8 · Mini-Selbstcheck</h4>
+          <p>Was bedeutet μ = 20 bei 80 Versuchen?</p>
+          <div class="answers">
+            <button type="button" data-good="true">Langfristig liegen die Trefferzahlen im Mittel bei 20.</button>
+            <button type="button" data-good="false">Jede Durchführung hat genau 20 Treffer.</button>
+          </div>
+          <div class="choice-feedback" aria-live="polite"></div>
+        </section>
+        <section class="card"><h4>9 · Sicherung und Exit-Ticket</h4><p><b>Zusammenfassung:</b> Du kannst Erwartungswerte berechnen und sinnvoll interpretieren.</p><p><b>Exit-Ticket:</b> Warum wäre „μ = Garantie“ eine falsche Aussage?</p><p class="source-note">Quellenhinweis: DJP Station 6; Serlo: Erwartungswert der Binomialverteilung.</p></section>
+      </article>
+      <article class="unit" id="u13" data-unit>
+        <div class="unit-head">
+          <span class="week-badge">Woche 13</span>
+          <div>
+            <h3>Streuung: Wie stark schwanken Ergebnisse?</h3>
+            <p class="muted">Zeitbezug: Woche 13 · Lernblock im Halbjahresskript</p>
+          </div>
+          <label class="done-line"><input type="checkbox" class="done" data-id="u13"> erledigt</label>
+        </div>
+        <div class="unit-grid">
+          <section class="card light"><h4>1 · Lernziele</h4><ul><li>Du berechnest die Standardabweichung bei Binomialverteilungen.</li><li>Du deutest Streuung als typische Schwankungsbreite.</li><li>Du erklärst, warum gleiche Erwartungswerte unterschiedlich streuen können.</li></ul></section>
+          <section class="card light"><h4>2 · Einstieg / Problemfrage</h4><p>Zwei Modelle haben ähnlichen Erwartungswert. Trotzdem können die Ergebnisse unterschiedlich stark schwanken. Wie beschreibt man das?</p></section>
+        </div>
+        <section class="card"><h4>3 · Grundwissen verständlich erklärt</h4><p>Die Varianz und die Standardabweichung beschreiben die Streuung um den Erwartungswert. Bei der Binomialverteilung gilt <span class="formula" role="math" aria-label="Standardabweichung"><math><mrow><mi>σ</mi><mo>=</mo><msqrt><mrow><mi>n</mi><mo>·</mo><mi>p</mi><mo>·</mo><mrow><mn>1</mn><mo>−</mo><mi>p</mi></mrow></mrow></msqrt></mrow></math></span>. Die Standardabweichung ist in der Einheit „Trefferzahl“ leichter zu deuten als die Varianz.</p><div class="tagrow"><b>Zentrale Begriffe:</b><span class="tag">Varianz</span><span class="tag">Standardabweichung</span><span class="tag">Streuung</span><span class="tag">Schwankungsbreite</span><span class="tag">σ</span></div></section>
+        <section class="callout"><b>Merksatz:</b> Je größer σ ist, desto breiter streuen typische Ergebnisse um den Erwartungswert.</section>
+        <section class="card"><h4>4 · Beispiel</h4><p>Bei n = 80 und p = 0,25 gilt σ = √(80 · 0,25 · 0,75) = √15 ≈ 3,87. Die Trefferzahlen schwanken typischerweise um einige Treffer um den Erwartungswert 20.</p></section>
+        <section class="card task" data-check data-answer="3.87" data-tol="0.02">
+          <h4>5 · Interaktive Übung</h4>
+          <p>Nutze den Verteilungsrechner im Labor. Vergleiche p = 0,50 mit p = 0,10 bei gleichem n.</p>
+          <label>Gerundet auf zwei Nachkommastellen: σ bei n = 80 und p = 0,25?<input type="number" step="any" class="check-input" placeholder="Dein Ergebnis"></label>
+          <button class="check-btn primary" type="button">Antwort prüfen</button>
+          <div class="task-feedback" aria-live="polite"></div>
+        </section>
+        <section class="card"><h4>6 · Aufgaben zum Üben</h4>
+          <ol>
+            <li>Erkläre die Idee dieser Einheit in zwei Sätzen.</li>
+            <li>Bearbeite die interaktive Übung und schreibe einen Antwortsatz.</li>
+            <li>Übertrage die Idee auf ein eigenes Beispiel aus Sport, Biologie oder Alltag.</li>
+          </ol>
+          <div class="help-stack">
+            <details><summary>Hilfe 1: Denkimpuls</summary><p>Zuerst 1 − p berechnen.</p></details>
+            <details><summary>Hilfe 2: Formel / Strategie</summary><p>Setze in <span class="formula" role="math" aria-label="Standardabweichung"><math><mrow><mi>σ</mi><mo>=</mo><msqrt><mrow><mi>n</mi><mo>·</mo><mi>p</mi><mo>·</mo><mrow><mn>1</mn><mo>−</mo><mi>p</mi></mrow></mrow></msqrt></mrow></math></span> ein.</p></details>
+            <details><summary>Hilfe 3: Zwischenschritt</summary><p>80 · 0,25 = 20 und 20 · 0,75 = 15.</p></details>
+            <details class="solution"><summary>Lösung anzeigen</summary><p>σ = √(80 · 0,25 · 0,75) = √15 ≈ 3,87. Antwortsatz: Die Standardabweichung beträgt etwa 3,87 Treffer.</p></details>
+          </div>
+        </section>
+        <section class="card warn"><h4>7 · Typischer Fehler</h4><p>Die Varianz ist nicht dasselbe wie die Standardabweichung. σ ist die Wurzel aus der Varianz.</p></section>
+        <section class="card miniq" data-choice>
+          <h4>8 · Mini-Selbstcheck</h4>
+          <p>Was beschreibt σ anschaulich?</p>
+          <div class="answers">
+            <button type="button" data-good="true">Die typische Streuung um den Erwartungswert.</button>
+            <button type="button" data-good="false">Die genaue Trefferzahl im nächsten Versuch.</button>
+          </div>
+          <div class="choice-feedback" aria-live="polite"></div>
+        </section>
+        <section class="card"><h4>9 · Sicherung und Exit-Ticket</h4><p><b>Zusammenfassung:</b> Du kannst Streuung berechnen und als Unsicherheit des Modells deuten.</p><p><b>Exit-Ticket:</b> Erkläre mit eigenen Worten, warum Streuung für Entscheidungen wichtig ist.</p><p class="source-note">Quellenhinweis: DJP Station 6; Serlo: Standardabweichung und Streuung.</p></section>
+      </article>
+    </section>
+    
+    <section class="chapter" id="k7">
+      <div class="chapter-head">
+        <div><span class="chapter-kicker">K7</span><h2>Kapitel 7 · Hypothesentests und Entscheidungen</h2></div>
+        <div class="chapter-links"><a class="mini-link" href="#u14">Woche 14: Nullhypothese, Gegenhypothese und Testidee</a><a class="mini-link" href="#u15">Woche 15: Signifikanzniveau und Fehler 1. Art</a><a class="mini-link" href="#u16">Woche 16–17: Einseitiger Binomialtest Schritt für Schritt</a><a class="mini-link" href="#u17">Woche 18: Transfer: Statistik verantwortungsvoll deuten</a></div>
+      </div>
+      
+      <article class="unit" id="u14" data-unit>
+        <div class="unit-head">
+          <span class="week-badge">Woche 14</span>
+          <div>
+            <h3>Nullhypothese, Gegenhypothese und Testidee</h3>
+            <p class="muted">Zeitbezug: Woche 14 · Lernblock im Halbjahresskript</p>
+          </div>
+          <label class="done-line"><input type="checkbox" class="done" data-id="u14"> erledigt</label>
+        </div>
+        <div class="unit-grid">
+          <section class="card light"><h4>1 · Lernziele</h4><ul><li>Du formulierst H0 und H1 passend zu einer Fragestellung.</li><li>Du verstehst, dass ein Test unter Annahme von H0 rechnet.</li><li>Du unterscheidest rechts- und linksseitige Tests.</li></ul></section>
+          <section class="card light"><h4>2 · Einstieg / Problemfrage</h4><p>Ein Trainingsprogramm behauptet, die Trefferwahrscheinlichkeit sei gestiegen. Welche Hypothese wird geprüft?</p></section>
+        </div>
+        <section class="card"><h4>3 · Grundwissen verständlich erklärt</h4><p>Bei einem Hypothesentest wird eine Nullhypothese H0 als Ausgangsmodell angenommen. Dann fragt man: Wären die beobachteten Daten unter H0 noch plausibel oder so extrem, dass wir H0 verwerfen? Die Gegenhypothese H1 beschreibt die Richtung des Verdachts: größer, kleiner oder anders.</p><div class="tagrow"><b>Zentrale Begriffe:</b><span class="tag">Nullhypothese H0</span><span class="tag">Gegenhypothese H1</span><span class="tag">rechtsseitig</span><span class="tag">linksseitig</span><span class="tag">plausibel</span></div></section>
+        <section class="callout"><b>Merksatz:</b> Ein Test beweist H0 nicht. Er entscheidet nur, ob die Daten stark genug gegen H0 sprechen.</section>
+        <section class="card"><h4>4 · Beispiel</h4><p>Behauptung: „Die Trefferquote ist höher als 50 Prozent.“ Dann kann H0: p ≤ 0,50 oder modellhaft p = 0,50 geprüft werden; H1 lautet p > 0,50. Das ist ein rechtsseitiger Test.</p></section>
+        <section class="card task" data-check data-answer="2" data-tol="0.001">
+          <h4>5 · Interaktive Übung</h4>
+          <p>Im Hypothesentest-Labor kannst du n, p0, α und die beobachtete Trefferzahl verändern.</p>
+          <label>Wie viele Richtungen hat ein einseitiger Test grundsätzlich: linksseitig oder rechtsseitig?<input type="number" step="any" class="check-input" placeholder="Dein Ergebnis"></label>
+          <button class="check-btn primary" type="button">Antwort prüfen</button>
+          <div class="task-feedback" aria-live="polite"></div>
+        </section>
+        <section class="card"><h4>6 · Aufgaben zum Üben</h4>
+          <ol>
+            <li>Erkläre die Idee dieser Einheit in zwei Sätzen.</li>
+            <li>Bearbeite die interaktive Übung und schreibe einen Antwortsatz.</li>
+            <li>Übertrage die Idee auf ein eigenes Beispiel aus Sport, Biologie oder Alltag.</li>
+          </ol>
+          <div class="help-stack">
+            <details><summary>Hilfe 1: Denkimpuls</summary><p>Denke an „zu klein“ und „zu groß“.</p></details>
+            <details><summary>Hilfe 2: Formel / Strategie</summary><p>Linksseitig prüft kleine Werte, rechtsseitig große Werte.</p></details>
+            <details><summary>Hilfe 3: Zwischenschritt</summary><p>Bei „Verbesserung“ sind große Trefferzahlen auffällig.</p></details>
+            <details class="solution"><summary>Lösung anzeigen</summary><p>Ein einseitiger Test kann linksseitig oder rechtsseitig sein. Antwortsatz: Es gibt zwei Richtungen für einseitige Tests.</p></details>
+          </div>
+        </section>
+        <section class="card warn"><h4>7 · Typischer Fehler</h4><p>Die Gegenhypothese muss zur Sachfrage passen. „Besser geworden“ ist nicht linksseitig.</p></section>
+        <section class="card miniq" data-choice>
+          <h4>8 · Mini-Selbstcheck</h4>
+          <p>Unter welcher Annahme wird die Prüfverteilung berechnet?</p>
+          <div class="answers">
+            <button type="button" data-good="true">Unter der Nullhypothese.</button>
+            <button type="button" data-good="false">Unter der Wunschbehauptung.</button>
+          </div>
+          <div class="choice-feedback" aria-live="polite"></div>
+        </section>
+        <section class="card"><h4>9 · Sicherung und Exit-Ticket</h4><p><b>Zusammenfassung:</b> Du formulierst Hypothesen und erkennst die Richtung eines Tests.</p><p><b>Exit-Ticket:</b> Formuliere H1 für die Behauptung: „Die Fehlerrate ist gesunken.“</p><p class="source-note">Quellenhinweis: DJP Station 7; Fachlehrplan Mathematik GK: einseitige Hypothesentests.</p></section>
+      </article>
+      <article class="unit" id="u15" data-unit>
+        <div class="unit-head">
+          <span class="week-badge">Woche 15</span>
+          <div>
+            <h3>Signifikanzniveau und Fehler 1. Art</h3>
+            <p class="muted">Zeitbezug: Woche 15 · Lernblock im Halbjahresskript</p>
+          </div>
+          <label class="done-line"><input type="checkbox" class="done" data-id="u15"> erledigt</label>
+        </div>
+        <div class="unit-grid">
+          <section class="card light"><h4>1 · Lernziele</h4><ul><li>Du deutest das Signifikanzniveau α.</li><li>Du erklärst den Fehler 1. Art.</li><li>Du verstehst den Ablehnungsbereich.</li></ul></section>
+          <section class="card light"><h4>2 · Einstieg / Problemfrage</h4><p>Wie groß darf die Wahrscheinlichkeit sein, H0 fälschlich abzulehnen?</p></section>
+        </div>
+        <section class="card"><h4>3 · Grundwissen verständlich erklärt</h4><p>Das Signifikanzniveau α begrenzt die Wahrscheinlichkeit für einen Fehler 1. Art. Dieser Fehler bedeutet: Wir verwerfen H0, obwohl H0 tatsächlich gilt. Der Ablehnungsbereich wird so gewählt, dass er unter H0 höchstens die Wahrscheinlichkeit α hat.</p><div class="tagrow"><b>Zentrale Begriffe:</b><span class="tag">Signifikanzniveau α</span><span class="tag">Fehler 1. Art</span><span class="tag">Ablehnungsbereich</span><span class="tag">kritischer Wert</span><span class="tag">Entscheidungsregel</span></div></section>
+        <section class="callout"><b>Merksatz:</b> α ist die vorher festgelegte maximale Irrtumswahrscheinlichkeit für „H0 fälschlich verwerfen“.</section>
+        <section class="card"><h4>4 · Beispiel</h4><p>Bei α = 0,05 darf der Ablehnungsbereich unter H0 höchstens 5 Prozent Wahrscheinlichkeit besitzen.</p></section>
+        <section class="card task" data-check data-answer="5" data-tol="0.001">
+          <h4>5 · Interaktive Übung</h4>
+          <p>Verändere im Hypothesentest-Labor α. Beobachte, wie der Ablehnungsbereich größer oder kleiner wird.</p>
+          <label>α = 0,05 entspricht wie vielen Prozent?<input type="number" step="any" class="check-input" placeholder="Dein Ergebnis"></label>
+          <button class="check-btn primary" type="button">Antwort prüfen</button>
+          <div class="task-feedback" aria-live="polite"></div>
+        </section>
+        <section class="card"><h4>6 · Aufgaben zum Üben</h4>
+          <ol>
+            <li>Erkläre die Idee dieser Einheit in zwei Sätzen.</li>
+            <li>Bearbeite die interaktive Übung und schreibe einen Antwortsatz.</li>
+            <li>Übertrage die Idee auf ein eigenes Beispiel aus Sport, Biologie oder Alltag.</li>
+          </ol>
+          <div class="help-stack">
+            <details><summary>Hilfe 1: Denkimpuls</summary><p>Dezimalzahl in Prozent umwandeln.</p></details>
+            <details><summary>Hilfe 2: Formel / Strategie</summary><p>Mit 100 multiplizieren.</p></details>
+            <details><summary>Hilfe 3: Zwischenschritt</summary><p>0,05 · 100 = 5.</p></details>
+            <details class="solution"><summary>Lösung anzeigen</summary><p>0,05 · 100 Prozent = 5 Prozent. Antwortsatz: Das Signifikanzniveau beträgt 5 Prozent.</p></details>
+          </div>
+        </section>
+        <section class="card warn"><h4>7 · Typischer Fehler</h4><p>Ein kleiner p-Wert oder ein Ablehnungsbereich bedeutet nicht, dass H0 logisch unmöglich ist.</p></section>
+        <section class="card miniq" data-choice>
+          <h4>8 · Mini-Selbstcheck</h4>
+          <p>Was ist der Fehler 1. Art?</p>
+          <div class="answers">
+            <button type="button" data-good="true">H0 wird verworfen, obwohl H0 gilt.</button>
+            <button type="button" data-good="false">H1 wird immer akzeptiert, ohne Daten zu prüfen.</button>
+          </div>
+          <div class="choice-feedback" aria-live="polite"></div>
+        </section>
+        <section class="card"><h4>9 · Sicherung und Exit-Ticket</h4><p><b>Zusammenfassung:</b> Du kannst α und den Fehler 1. Art verständlich erklären.</p><p><b>Exit-Ticket:</b> Warum legt man α vor der Datenauswertung fest?</p><p class="source-note">Quellenhinweis: DJP Station 7; Fachlehrplan Mathematik GK: Signifikanzniveau und Fehler 1. Art.</p></section>
+      </article>
+      <article class="unit" id="u16" data-unit>
+        <div class="unit-head">
+          <span class="week-badge">Woche 16–17</span>
+          <div>
+            <h3>Einseitiger Binomialtest Schritt für Schritt</h3>
+            <p class="muted">Zeitbezug: Woche 16–17 · Lernblock im Halbjahresskript</p>
+          </div>
+          <label class="done-line"><input type="checkbox" class="done" data-id="u16"> erledigt</label>
+        </div>
+        <div class="unit-grid">
+          <section class="card light"><h4>1 · Lernziele</h4><ul><li>Du bestimmst einen kritischen Bereich.</li><li>Du vergleichst eine Beobachtung mit der Entscheidungsregel.</li><li>Du formulierst einen sachlichen Antwortsatz.</li></ul></section>
+          <section class="card light"><h4>2 · Einstieg / Problemfrage</h4><p>Bei n = 20 und p0 = 0,50 soll rechtsseitig mit α = 0,05 getestet werden. Ab welcher Trefferzahl wird H0 verworfen?</p></section>
+        </div>
+        <section class="card"><h4>3 · Grundwissen verständlich erklärt</h4><p>Für einen rechtsseitigen Test sucht man den kleinsten kritischen Wert c, sodass P(X ≥ c) unter H0 höchstens α ist. Dann liegt der Ablehnungsbereich bei c, c+1, ..., n. Für linksseitige Tests sucht man entsprechend kleine Werte.</p><div class="tagrow"><b>Zentrale Begriffe:</b><span class="tag">kritischer Wert c</span><span class="tag">rechtsseitiger Test</span><span class="tag">linksseitiger Test</span><span class="tag">Ablehnungsbereich</span><span class="tag">Entscheidung</span></div></section>
+        <section class="callout"><b>Merksatz:</b> Entscheide mit der vorher festgelegten Regel, nicht nach Bauchgefühl.</section>
+        <section class="card"><h4>4 · Beispiel</h4><p>Bei n = 20, p0 = 0,50 und α = 0,05 ist rechtsseitig der kritische Wert c = 15. Denn P(X ≥ 15) ist etwa 0,0207 und damit kleiner als 0,05; P(X ≥ 14) wäre noch etwa 0,0577 und damit zu groß.</p></section>
+        <section class="card task" data-check data-answer="15" data-tol="0.001">
+          <h4>5 · Interaktive Übung</h4>
+          <p>Nutze den Hypothesentest-Rechner und stelle n = 20, p0 = 0,50, α = 0,05 und rechtsseitig ein.</p>
+          <label>Welcher kritische Wert c ergibt sich rechtsseitig bei n=20, p0=0,50 und α=0,05?<input type="number" step="any" class="check-input" placeholder="Dein Ergebnis"></label>
+          <button class="check-btn primary" type="button">Antwort prüfen</button>
+          <div class="task-feedback" aria-live="polite"></div>
+        </section>
+        <section class="card"><h4>6 · Aufgaben zum Üben</h4>
+          <ol>
+            <li>Erkläre die Idee dieser Einheit in zwei Sätzen.</li>
+            <li>Bearbeite die interaktive Übung und schreibe einen Antwortsatz.</li>
+            <li>Übertrage die Idee auf ein eigenes Beispiel aus Sport, Biologie oder Alltag.</li>
+          </ol>
+          <div class="help-stack">
+            <details><summary>Hilfe 1: Denkimpuls</summary><p>Rechtsseitig bedeutet: große Trefferzahlen sind auffällig.</p></details>
+            <details><summary>Hilfe 2: Formel / Strategie</summary><p>Teste die oberen Ränder der Binomialverteilung.</p></details>
+            <details><summary>Hilfe 3: Zwischenschritt</summary><p>Vergleiche P(X≥14) und P(X≥15) mit α = 0,05.</p></details>
+            <details class="solution"><summary>Lösung anzeigen</summary><p>Gesucht ist der kleinste Wert c mit P(X ≥ c) ≤ 0,05. Für c = 14 ist die Wahrscheinlichkeit noch etwa 0,0577; für c = 15 ist sie etwa 0,0207. Antwortsatz: H0 wird ab 15 Treffern verworfen.</p></details>
+          </div>
+        </section>
+        <section class="card warn"><h4>7 · Typischer Fehler</h4><p>Der kritische Wert gehört zum Ablehnungsbereich dazu. „Ab 15“ heißt 15, 16, 17, 18, 19, 20.</p></section>
+        <section class="card miniq" data-choice>
+          <h4>8 · Mini-Selbstcheck</h4>
+          <p>Was passiert bei 16 Treffern, wenn der Ablehnungsbereich ab 15 beginnt?</p>
+          <div class="answers">
+            <button type="button" data-good="true">H0 wird verworfen.</button>
+            <button type="button" data-good="false">H0 wird sicher bewiesen.</button>
+          </div>
+          <div class="choice-feedback" aria-live="polite"></div>
+        </section>
+        <section class="card"><h4>9 · Sicherung und Exit-Ticket</h4><p><b>Zusammenfassung:</b> Du kannst einen einseitigen Binomialtest rechnerisch durchführen und begründen.</p><p><b>Exit-Ticket:</b> Formuliere einen Antwortsatz für 14 beobachtete Treffer in diesem Test.</p><p class="source-note">Quellenhinweis: DJP Station 7; Serlo: Hypothesentest mit Binomialverteilung.</p></section>
+      </article>
+      <article class="unit" id="u17" data-unit>
+        <div class="unit-head">
+          <span class="week-badge">Woche 18</span>
+          <div>
+            <h3>Transfer: Statistik verantwortungsvoll deuten</h3>
+            <p class="muted">Zeitbezug: Woche 18 · Lernblock im Halbjahresskript</p>
+          </div>
+          <label class="done-line"><input type="checkbox" class="done" data-id="u17"> erledigt</label>
+        </div>
+        <div class="unit-grid">
+          <section class="card light"><h4>1 · Lernziele</h4><ul><li>Du formulierst vorsichtige Schlussfolgerungen.</li><li>Du erkennst Grenzen von Modellen und Tests.</li><li>Du verbindest Wahrscheinlichkeit, Simulation und Entscheidung.</li></ul></section>
+          <section class="card light"><h4>2 · Einstieg / Problemfrage</h4><p>Eine Studie in Sport oder Biologie liefert ein auffälliges Ergebnis. Was darf man sagen – und was nicht?</p></section>
+        </div>
+        <section class="card"><h4>3 · Grundwissen verständlich erklärt</h4><p>Statistische Entscheidungen sind modellabhängig. Ein Hypothesentest prüft Daten unter Annahmen. Er ersetzt keine fachliche Beurteilung der Stichprobe, Messmethode oder Fragestellung. Besonders wichtig sind saubere Begriffe: Stichprobe, Zufall, Unabhängigkeit, Signifikanz und praktische Bedeutung.</p><div class="tagrow"><b>Zentrale Begriffe:</b><span class="tag">Modellgrenze</span><span class="tag">Stichprobe</span><span class="tag">Interpretation</span><span class="tag">praktische Bedeutung</span><span class="tag">Transfer</span></div></section>
+        <section class="callout"><b>Merksatz:</b> Signifikant heißt nicht automatisch wichtig, ursächlich oder fehlerfrei gemessen.</section>
+        <section class="card"><h4>4 · Beispiel</h4><p>Wenn ein Test H0 verwirft, kann man sagen: „Unter dem angenommenen Modell wären die Daten bei H0 sehr unwahrscheinlich.“ Man sollte nicht sagen: „H1 ist endgültig bewiesen.“</p></section>
+        <section class="card task" data-check data-answer="1" data-tol="0.001">
+          <h4>5 · Interaktive Übung</h4>
+          <p>Bearbeite den Abschluss-Selbstcheck und markiere im Inhaltsverzeichnis, welche Kapitel du sicher beherrschst.</p>
+          <label>Wie viele Prozent sind 0,01 als Irrtumswahrscheinlichkeit?<input type="number" step="any" class="check-input" placeholder="Dein Ergebnis"></label>
+          <button class="check-btn primary" type="button">Antwort prüfen</button>
+          <div class="task-feedback" aria-live="polite"></div>
+        </section>
+        <section class="card"><h4>6 · Aufgaben zum Üben</h4>
+          <ol>
+            <li>Erkläre die Idee dieser Einheit in zwei Sätzen.</li>
+            <li>Bearbeite die interaktive Übung und schreibe einen Antwortsatz.</li>
+            <li>Übertrage die Idee auf ein eigenes Beispiel aus Sport, Biologie oder Alltag.</li>
+          </ol>
+          <div class="help-stack">
+            <details><summary>Hilfe 1: Denkimpuls</summary><p>Wandle Dezimalzahl in Prozent um.</p></details>
+            <details><summary>Hilfe 2: Formel / Strategie</summary><p>Mit 100 multiplizieren.</p></details>
+            <details><summary>Hilfe 3: Zwischenschritt</summary><p>0,01 · 100 = 1.</p></details>
+            <details class="solution"><summary>Lösung anzeigen</summary><p>0,01 · 100 Prozent = 1 Prozent. Antwortsatz: 0,01 entspricht 1 Prozent.</p></details>
+          </div>
+        </section>
+        <section class="card warn"><h4>7 · Typischer Fehler</h4><p>Aus einem Test folgt keine automatische Ursache-Wirkungs-Aussage. Dafür braucht man ein geeignetes Studiendesign.</p></section>
+        <section class="card miniq" data-choice>
+          <h4>8 · Mini-Selbstcheck</h4>
+          <p>Was ist eine vorsichtige Testaussage?</p>
+          <div class="answers">
+            <button type="button" data-good="true">Die Daten sprechen unter den Annahmen gegen H0.</button>
+            <button type="button" data-good="false">Die Gegenhypothese ist für immer bewiesen.</button>
+          </div>
+          <div class="choice-feedback" aria-live="polite"></div>
+        </section>
+        <section class="card"><h4>9 · Sicherung und Exit-Ticket</h4><p><b>Zusammenfassung:</b> Du kannst Ergebnisse aus Stochastik und Tests verantwortungsvoll formulieren.</p><p><b>Exit-Ticket:</b> Schreibe einen Satz, der ein Testergebnis korrekt und vorsichtig deutet.</p><p class="source-note">Quellenhinweis: DJP Station 7; NRW-Lehrplanbezug: Modellieren, Argumentieren und sachgerechte Deutung.</p></section>
+      </article>
+    </section>
+    </div></section>
+
+    <section id="labor"><div class="wrap"><div class="section-head"><div><h2>Stochastik-Labor: Rechner und Simulationen</h2><p>Alle interaktiven Inhalte laufen lokal im Browser. Jede Simulation mit Koordinatensystem enthält Achsentitel, Einheiten, Skalenwerte und gut lesbare Tick-Marks.</p></div></div>
+      <div class="dark-card">
+        <div class="tabs" role="tablist" aria-label="Labor auswählen">
+          <button class="tab active" data-tab="law" type="button">Große Zahlen</button>
+          <button class="tab" data-tab="events" type="button">Ereignisrechner</button>
+          <button class="tab" data-tab="comb" type="button">Kombinatorik</button>
+          <button class="tab" data-tab="tree" type="button">Baumdiagramm</button>
+          <button class="tab" data-tab="binom" type="button">Binomialverteilung</button>
+          <button class="tab" data-tab="test" type="button">Hypothesentest</button>
+        </div>
+        <div class="tab-panel active" id="tab-law">
+          <h3>Simulation: relatives Häufigkeitsdiagramm</h3><p>Die Kurve zeigt, wie sich die relative Häufigkeit hₙ bei vielen Wiederholungen entwickelt. Die gestrichelte Linie ist die Modellwahrscheinlichkeit p.</p>
+          <div class="form-grid"><label>Modellwahrscheinlichkeit p <input id="lawP" type="range" min="0.05" max="0.95" step="0.01" value="0.50"><span id="lawPVal">0,50</span></label><label>Anzahl Versuche n <input id="lawN" type="range" min="50" max="5000" step="50" value="800"><span id="lawNVal">800</span></label></div><button id="lawRun" class="primary" type="button">Neu simulieren</button><canvas id="lawCanvas" width="920" height="340" aria-label="Koordinatensystem der relativen Häufigkeit mit Achsentiteln, Einheiten, Skalenwerten und Tick-Marks"></canvas><div class="result" id="lawResult"></div>
+        </div>
+        <div class="tab-panel" id="tab-events">
+          <h3>Ereignisrechner für einen fairen Würfel</h3><p>Grundraum Ω = {1,2,3,4,5,6}. Gib Ereignisse als kommagetrennte Zahlen ein.</p><div class="form-grid"><label>Ereignis A <input id="setA" type="text" value="2,4,6"></label><label>Ereignis B <input id="setB" type="text" value="4,5,6"></label></div><button id="eventCalc" class="primary" type="button">Mengen berechnen</button><div class="result" id="eventResult"></div>
+        </div>
+        <div class="tab-panel" id="tab-comb">
+          <h3>Kombinatorik-Rechner</h3><p>Berechne geordnete und ungeordnete Auswahlen.</p><div class="form-grid"><label>n <input id="combN" type="number" min="0" max="100" step="1" value="10"></label><label>k <input id="combK" type="number" min="0" max="100" step="1" value="3"></label></div><button id="combCalc" class="primary" type="button">Berechnen</button><div class="result" id="combResult"></div>
+        </div>
+        <div class="tab-panel" id="tab-tree">
+          <h3>Baumdiagramm: Ziehen aus einer Urne</h3><p>Vergleiche Ziehen mit und ohne Zurücklegen. Das ist kein Koordinatensystem, sondern ein Pfadbild.</p><div class="form-grid"><label>Rote Kugeln <input id="urnR" type="number" value="3" min="0" step="1"></label><label>Blaue Kugeln <input id="urnB" type="number" value="5" min="0" step="1"></label><label>Modus <select id="urnMode"><option value="with">mit Zurücklegen</option><option value="without">ohne Zurücklegen</option></select></label></div><button id="urnCalc" class="primary" type="button">Baum berechnen</button><canvas id="urnCanvas" width="920" height="330" aria-label="Baumdiagramm für zwei Ziehungen aus einer Urne"></canvas><div class="result" id="urnResult"></div>
+        </div>
+        <div class="tab-panel" id="tab-binom">
+          <h3>Histogramm der Binomialverteilung</h3><p>Das Koordinatensystem zeigt Trefferzahl k gegen Wahrscheinlichkeit P(X=k).</p><div class="form-grid"><label>Anzahl n <input id="binN" type="range" min="1" max="80" step="1" value="20"><span id="binNVal">20</span></label><label>Trefferwahrscheinlichkeit p <input id="binP" type="range" min="0.01" max="0.99" step="0.01" value="0.30"><span id="binPVal">0,30</span></label><label>Trefferzahl k <input id="binK" type="number" min="0" max="80" step="1" value="6"></label><label>Modus <select id="binMode"><option value="eq">genau k</option><option value="le">höchstens k</option><option value="ge">mindestens k</option></select></label></div><canvas id="binCanvas" width="920" height="340" aria-label="Koordinatensystem der Binomialverteilung mit Achsentiteln, Einheiten, Skalenwerten und Tick-Marks"></canvas><div class="result" id="binResult"></div>
+        </div>
+        <div class="tab-panel" id="tab-test">
+          <h3>Einseitiger Binomialtest</h3><p>Das Koordinatensystem markiert den Ablehnungsbereich unter H0.</p><div class="form-grid"><label>Stichprobengröße n <input id="testN" type="number" min="1" max="200" step="1" value="50"></label><label>p₀ unter H0 <input id="testP" type="number" min="0.001" max="0.999" step="0.01" value="0.20"></label><label>Signifikanzniveau α <input id="testAlpha" type="number" min="0.001" max="0.25" step="0.01" value="0.05"></label><label>Richtung <select id="testSide"><option value="right">rechtsseitig: p &gt; p₀</option><option value="left">linksseitig: p &lt; p₀</option></select></label><label>Beobachtete Trefferzahl k <input id="testObs" type="number" min="0" max="200" step="1" value="15"></label></div><button id="testCalc" class="primary" type="button">Test auswerten</button><canvas id="testCanvas" width="920" height="340" aria-label="Koordinatensystem zum Hypothesentest mit Achsentiteln, Einheiten, Skalenwerten und Tick-Marks"></canvas><div class="result" id="testResult"></div>
+        </div>
+      </div>
+    </div></section>
+
+    <section id="abschlussquiz"><div class="wrap"><div class="section-head"><div><h2>Abschlussquiz</h2><p>Kurzer Gesamtcheck für das Halbjahr. Du bekommst sofort Feedback.</p></div></div><div class="quiz-grid">
+      <div class="quiz-card" data-choice><h3>1 · Was stabilisiert sich bei vielen Wiederholungen?</h3><div class="answers"><button data-good="true" type="button">Die relative Häufigkeit nähert sich oft der Modellwahrscheinlichkeit.</button><button data-good="false" type="button">Jedes Ergebnis kommt exakt gleich oft vor.</button></div><div class="choice-feedback"></div></div>
+      <div class="quiz-card" data-choice><h3>2 · Was bedeutet A ∩ B?</h3><div class="answers"><button data-good="true" type="button">A und B treten ein.</button><button data-good="false" type="button">A tritt nicht ein.</button></div><div class="choice-feedback"></div></div>
+      <div class="quiz-card" data-choice><h3>3 · Bei einem Pfad im Baumdiagramm …</h3><div class="answers"><button data-good="true" type="button">werden Astwahrscheinlichkeiten multipliziert.</button><button data-good="false" type="button">werden immer alle Werte addiert.</button></div><div class="choice-feedback"></div></div>
+      <div class="quiz-card" data-choice><h3>4 · Eine Bernoulli-Kette braucht …</h3><div class="answers"><button data-good="true" type="button">zwei Ausgänge, konstantes p und Unabhängigkeit.</button><button data-good="false" type="button">immer genau p = 0,5.</button></div><div class="choice-feedback"></div></div>
+      <div class="quiz-card" data-choice><h3>5 · Fehler 1. Art bedeutet …</h3><div class="answers"><button data-good="true" type="button">H0 wird verworfen, obwohl H0 gilt.</button><button data-good="false" type="button">H0 wird automatisch bewiesen.</button></div><div class="choice-feedback"></div></div>
+      <div class="quiz-card" data-choice><h3>6 · Ein signifikantes Ergebnis …</h3><div class="answers"><button data-good="true" type="button">muss vorsichtig unter den Modellannahmen gedeutet werden.</button><button data-good="false" type="button">beweist immer eine Ursache.</button></div><div class="choice-feedback"></div></div>
+    </div></div></section>
+
+    <section id="uebersicht"><div class="wrap"><div class="section-head"><div><h2>Übersicht: Begriffe und Methoden schnell vergleichen</h2><p>Nutze die Tabelle, wenn du eine Methode einordnen willst.</p></div></div><div class="compare-wrap"><table class="compare"><thead><tr><th>Situation</th><th>Passende Methode</th><th>Typische Formel / Idee</th><th>Achte auf</th></tr></thead><tbody><tr><td>Daten aus Experimenten</td><td>relative Häufigkeit</td><td><span class="formula" role="math" aria-label="relative Häufigkeit h n gleich H durch n"><math><mrow><msub><mi>h</mi><mi>n</mi></msub><mo>=</mo><mfrac><mi>H</mi><mi>n</mi></mfrac></mrow></math></span></td><td>Stichprobengröße und Schwankung</td></tr><tr><td>Einfache gleichwahrscheinliche Ergebnisse</td><td>Laplace-Wahrscheinlichkeit</td><td>günstige durch mögliche Ergebnisse</td><td>Gleichwahrscheinlichkeit prüfen</td></tr><tr><td>Mehrstufiger Versuch</td><td>Baumdiagramm</td><td>Pfadregel und Summenregel</td><td>mit/ohne Zurücklegen</td></tr><tr><td>n unabhängige Treffer/Nichttreffer-Versuche</td><td>Binomialverteilung</td><td><span class="formula" role="math" aria-label="Binomialformel"><math><mrow><mi>P</mi><mo>(</mo><mi>X</mi><mo>=</mo><mi>k</mi><mo>)</mo><mo>=</mo><mrow><mo>(</mo><mfrac><mi>n</mi><mi>k</mi></mfrac><mo>)</mo><mo>·</mo><msup><mi>p</mi><mi>k</mi></msup><mo>·</mo><msup><mrow><mn>1</mn><mo>−</mo><mi>p</mi></mrow><mrow><mi>n</mi><mo>−</mo><mi>k</mi></mrow></msup></mrow></mrow></math></span></td><td>Bernoulli-Annahmen</td></tr><tr><td>Entscheidung über Behauptung</td><td>Hypothesentest</td><td>Ablehnungsbereich unter H0</td><td>α, Testseite, Antwortsatz</td></tr></tbody></table></div></div></section>
+
+    <section id="glossar"><div class="wrap"><div class="section-head"><div><h2>Glossar</h2><p>Kurze Erklärungen zentraler Begriffe.</p></div></div><div class="glossary">
+      <div class="term"><b>Bernoulli-Kette</b><span>n unabhängige gleichartige Versuche mit Erfolg/Misserfolg und konstantem p.</span></div><div class="term"><b>Binomialverteilung</b><span>Wahrscheinlichkeitsverteilung der Trefferzahl in einer Bernoulli-Kette.</span></div><div class="term"><b>Ereignis</b><span>Menge von Ergebnissen eines Zufallsexperiments.</span></div><div class="term"><b>Fehler 1. Art</b><span>H0 wird verworfen, obwohl H0 gilt.</span></div><div class="term"><b>Gegenereignis</b><span>Alle Ergebnisse, bei denen A nicht eintritt.</span></div><div class="term"><b>Hypothesentest</b><span>Entscheidungsverfahren, ob Daten stark gegen H0 sprechen.</span></div><div class="term"><b>Kumuliert</b><span>Mehrere Trefferzahlen werden zusammengefasst, z. B. X ≤ k.</span></div><div class="term"><b>Signifikanzniveau α</b><span>Vorher festgelegte maximale Wahrscheinlichkeit für Fehler 1. Art.</span></div><div class="term"><b>Standardabweichung σ</b><span>Maß für die typische Streuung um den Erwartungswert.</span></div><div class="term"><b>Unabhängigkeit</b><span>Ein Ereignis verändert die Wahrscheinlichkeit des anderen nicht.</span></div><div class="term"><b>Zufallsgröße X</b><span>Ordnet Ergebnissen Zahlen zu, z. B. die Trefferzahl.</span></div><div class="term"><b>Relative Häufigkeit</b><span>Anteil: Anzahl des Ereignisses geteilt durch Versuchszahl.</span></div>
+    </div></div></section>
+
+    <section id="quellen"><div class="wrap"><div class="section-head"><div><h2>Kompaktes Quellenverzeichnis</h2><p>Die Datei ist offline nutzbar; Quellen werden nur dokumentiert.</p></div></div><div class="dark-card"><ol class="source-list"><li>Vorhandene interaktive HTML-Lernlandkarte: Mathematik 13.1 · Stochastik · Wahrscheinlichkeit und Hypothesentests.</li><li>Anonymisierte didaktische Jahresplanung Mathematik 13.1, Kursthema „Vom Experiment zur Wahrscheinlichkeit und Hypothesentests zur Analyse empirischer Daten“.</li><li>Berufsbildung NRW: Bildungspläne Berufliches Gymnasium, Anlage D 16–17a; Teil III Mathematik Grundkurs, insbesondere Wahrscheinlichkeitsrechnung, Binomialverteilung und einseitige Hypothesentests.</li><li>Standardsicherung NRW: Bildungsgang Anlage D17, Allgemeine Hochschulreife im Schwerpunkt Gesundheit mit Sport/Biologie.</li><li>Serlo Mathematik: relative Häufigkeit, Baumdiagramme und Pfadregeln, Binomialverteilung, Hypothesentests.</li><li>MDN Web Docs: HTML details/summary, Canvas und MathML als technische Grundlage der Offline-Interaktivität.</li></ol></div></div></section>
+  </main>
+  <footer><div class="wrap"><p class="muted">Dieses Skript ist ein Lernmaterial und ersetzt keine unterrichtliche Einordnung. Ergebnisse aus Simulationen sind Zufallsergebnisse und können bei jedem Start leicht variieren.</p></div></footer>
+  <script>
+    (function(){
+      function $(s,r){return (r||document).querySelector(s);}
+      function all(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s));}
+      function fmt(x,d){ if(!isFinite(x)) return '—'; return Number(x).toLocaleString('de-DE',{maximumFractionDigits:d==null?4:d,useGrouping:false}); }
+      function clamp(v,a,b){return Math.max(a,Math.min(b,v));}
+      function setHTML(el,html){ if(el) el.innerHTML=html; }
+      function formula(txt){ return '<span class="formula">'+txt+'</span>'; }
+      var status=$('#jsStatus'); if(status) status.innerHTML='<b>Interaktivität:</b> JavaScript läuft. Rechner, Quiz und Simulationen sind aktiv.';
+      function saveProgress(){ all('.done').forEach(function(cb){ var key='m13-script-'+cb.getAttribute('data-id'); try{ cb.checked=localStorage.getItem(key)==='1'; }catch(e){} cb.addEventListener('change',function(){try{localStorage.setItem(key,cb.checked?'1':'0');}catch(e){} }); }); }
+      saveProgress();
+      var openAll=$('#openAll'), closeAll=$('#closeAll'); if(openAll) openAll.addEventListener('click',function(){all('details').forEach(function(d){d.open=true;});}); if(closeAll) closeAll.addEventListener('click',function(){all('details').forEach(function(d){d.open=false;});});
+      all('[data-check]').forEach(function(box){ var btn=$('.check-btn',box), input=$('.check-input',box), fb=$('.task-feedback',box); if(!btn||!input||!fb) return; btn.addEventListener('click',function(){ var ans=parseFloat(box.getAttribute('data-answer').replace(',','.')); var tol=parseFloat(box.getAttribute('data-tol')||'0.001'); var val=parseFloat(String(input.value).replace(',','.')); if(!isFinite(val)){fb.className='task-feedback no';fb.textContent='Gib zuerst eine Zahl ein.';return;} if(Math.abs(val-ans)<=tol){fb.className='task-feedback ok';fb.textContent='Richtig. Dein Ergebnis passt.';} else {fb.className='task-feedback no';fb.textContent='Noch nicht. Prüfe Formel, Einheiten und Rundung. Erwartet wird ungefähr '+fmt(ans,4)+'.';} }); });
+      all('[data-choice]').forEach(function(card){ all('button[data-good]',card).forEach(function(btn){btn.addEventListener('click',function(){ var fb=$('.choice-feedback',card); var ok=btn.getAttribute('data-good')==='true'; if(fb){fb.className='choice-feedback '+(ok?'ok':'no'); fb.textContent=ok?'Richtig.':'Noch nicht. Lies den Merksatz oder die passende Hilfe noch einmal.';} }); }); });
+      all('.tab').forEach(function(btn){ btn.addEventListener('click',function(){ all('.tab').forEach(function(b){b.classList.remove('active');}); all('.tab-panel').forEach(function(p){p.classList.remove('active');}); btn.classList.add('active'); var panel=$('#tab-'+btn.getAttribute('data-tab')); if(panel) panel.classList.add('active'); drawActive(); }); });
+      function num(id){var el=$(id); return el?parseFloat(String(el.value).replace(',','.')):NaN;}
+      function comb(n,k){n=Math.round(n);k=Math.round(k);if(k<0||k>n)return 0;k=Math.min(k,n-k);var r=1;for(var i=1;i<=k;i++)r=r*(n-k+i)/i;return r;}
+      function binomP(n,p,k){n=Math.round(n);k=Math.round(k);if(k<0||k>n)return 0;return comb(n,k)*Math.pow(p,k)*Math.pow(1-p,n-k);}
+      function cumLe(n,p,k){var s=0;for(var i=0;i<=k;i++)s+=binomP(n,p,i);return s;}
+      function cumGe(n,p,k){var s=0;for(var i=k;i<=n;i++)s+=binomP(n,p,i);return s;}
+      function drawAxes(ctx,W,H,cfg){
+        var left=82,right=28,top=28,bottom=70; var pw=W-left-right, ph=H-top-bottom; var xMin=cfg.xMin, xMax=cfg.xMax, yMin=cfg.yMin, yMax=cfg.yMax;
+        ctx.save(); ctx.clearRect(0,0,W,H); ctx.fillStyle='#071022'; ctx.fillRect(0,0,W,H); ctx.strokeStyle='rgba(255,255,255,.18)'; ctx.fillStyle='#dbeafe'; ctx.lineWidth=1; ctx.font='14px system-ui'; ctx.textAlign='center'; ctx.textBaseline='top';
+        var xTicks=cfg.xTicks||5, yTicks=cfg.yTicks||5;
+        for(var i=0;i<=xTicks;i++){ var xv=xMin+(xMax-xMin)*i/xTicks; var x=left+pw*i/xTicks; ctx.strokeStyle='rgba(255,255,255,.10)'; ctx.beginPath(); ctx.moveTo(x,top); ctx.lineTo(x,top+ph); ctx.stroke(); ctx.strokeStyle='rgba(255,255,255,.65)'; ctx.beginPath(); ctx.moveTo(x,top+ph); ctx.lineTo(x,top+ph+8); ctx.stroke(); ctx.fillText(fmt(xv, cfg.xDigits==null?0:cfg.xDigits),x,top+ph+12); }
+        ctx.textAlign='right'; ctx.textBaseline='middle';
+        for(var j=0;j<=yTicks;j++){ var yv=yMin+(yMax-yMin)*j/yTicks; var y=top+ph-ph*j/yTicks; ctx.strokeStyle='rgba(255,255,255,.10)'; ctx.beginPath(); ctx.moveTo(left,y); ctx.lineTo(left+pw,y); ctx.stroke(); ctx.strokeStyle='rgba(255,255,255,.65)'; ctx.beginPath(); ctx.moveTo(left-8,y); ctx.lineTo(left,y); ctx.stroke(); ctx.fillText(fmt(yv, cfg.yDigits==null?2:cfg.yDigits),left-12,y); }
+        ctx.strokeStyle='rgba(255,255,255,.75)'; ctx.lineWidth=2; ctx.beginPath(); ctx.moveTo(left,top); ctx.lineTo(left,top+ph); ctx.lineTo(left+pw,top+ph); ctx.stroke();
+        ctx.fillStyle='#e8f0ff'; ctx.font='bold 15px system-ui'; ctx.textAlign='center'; ctx.textBaseline='bottom'; ctx.fillText(cfg.xLabel||'x', left+pw/2, H-8); ctx.save(); ctx.translate(18,top+ph/2); ctx.rotate(-Math.PI/2); ctx.textAlign='center'; ctx.fillText(cfg.yLabel||'y',0,0); ctx.restore();
+        ctx.restore();
+        return {left:left,top:top,pw:pw,ph:ph,x:function(v){return left+pw*(v-xMin)/(xMax-xMin);},y:function(v){return top+ph-ph*(v-yMin)/(yMax-yMin);}};
+      }
+      function drawLaw(){var p=num('#lawP'), n=Math.round(num('#lawN')); $('#lawPVal').textContent=fmt(p,2); $('#lawNVal').textContent=fmt(n,0); var can=$('#lawCanvas'), ctx=can.getContext('2d'), W=can.width,H=can.height; var ax=drawAxes(ctx,W,H,{xMin:0,xMax:n,yMin:0,yMax:1,xTicks:5,yTicks:5,xDigits:0,yDigits:2,xLabel:'Anzahl Versuche n (Versuche)',yLabel:'relative Häufigkeit hₙ (Anteil)'}); var hit=0; ctx.save(); ctx.strokeStyle='#00d5ff'; ctx.lineWidth=2.5; ctx.beginPath(); for(var i=1;i<=n;i++){ if(Math.random()<p) hit++; var h=hit/i; var x=ax.x(i), y=ax.y(h); if(i===1) ctx.moveTo(x,y); else ctx.lineTo(x,y); } ctx.stroke(); ctx.setLineDash([8,7]); ctx.strokeStyle='#facc15'; ctx.lineWidth=2; ctx.beginPath(); ctx.moveTo(ax.x(0),ax.y(p)); ctx.lineTo(ax.x(n),ax.y(p)); ctx.stroke(); ctx.setLineDash([]); ctx.fillStyle='#facc15'; ctx.font='bold 14px system-ui'; ctx.fillText('Modell p = '+fmt(p,2), ax.x(n)-120, ax.y(p)-18); ctx.restore(); setHTML($('#lawResult'),'<strong>Ergebnis:</strong> '+hit+' Treffer in '+n+' Versuchen, also '+formula('hₙ = '+fmt(hit/n,4))+' . Die gelbe Linie zeigt die Modellwahrscheinlichkeit p.');}
+      function calcEvents(){function parse(s){var arr=String(s).split(',');var set={};for(var i=0;i<arr.length;i++){var v=parseInt(arr[i],10);if(v>=1&&v<=6)set[v]=true;}return set;} function vals(s){var a=[];for(var i=1;i<=6;i++)if(s[i])a.push(i);return '{'+a.join(', ')+'}';} var A=parse($('#setA').value), B=parse($('#setB').value); var inter={}, uni={}, diff={}, Ac={}; for(var i=1;i<=6;i++){ if(A[i]&&B[i])inter[i]=true; if(A[i]||B[i])uni[i]=true; if(A[i]&&!B[i])diff[i]=true; if(!A[i])Ac[i]=true; } setHTML($('#eventResult'),'<strong>A ∩ B:</strong> '+vals(inter)+' · <strong>A ∪ B:</strong> '+vals(uni)+' · <strong>A ohne B:</strong> '+vals(diff)+' · <strong>Gegenereignis von A:</strong> '+vals(Ac));}
+      function calcComb(){var n=Math.round(num('#combN')), k=Math.round(num('#combK')); var c=comb(n,k); var ordered=1; for(var i=0;i<k;i++)ordered*=Math.max(0,n-i); setHTML($('#combResult'),'<strong>Ungeordnet:</strong> '+formula('('+n+' über '+k+') = '+fmt(c,0))+' · <strong>Geordnet ohne Zurücklegen:</strong> '+formula(fmt(ordered,0))+' .');}
+      function drawTree(){var r=Math.round(num('#urnR')), b=Math.round(num('#urnB')), mode=$('#urnMode').value; var total=r+b; var can=$('#urnCanvas'),ctx=can.getContext('2d'),W=can.width,H=can.height; ctx.clearRect(0,0,W,H); ctx.fillStyle='#071022'; ctx.fillRect(0,0,W,H); ctx.font='16px system-ui'; ctx.textAlign='center'; ctx.textBaseline='middle'; if(total<=0){setHTML($('#urnResult'),'Bitte mindestens eine Kugel eingeben.');return;} function line(x1,y1,x2,y2,label,color){ctx.strokeStyle=color;ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(x1,y1);ctx.lineTo(x2,y2);ctx.stroke();ctx.fillStyle='#e8f0ff';ctx.fillText(label,(x1+x2)/2,(y1+y2)/2-12);} function node(x,y,t,color){ctx.fillStyle=color;ctx.beginPath();ctx.arc(x,y,26,0,Math.PI*2);ctx.fill();ctx.fillStyle='#06101c';ctx.font='bold 16px system-ui';ctx.fillText(t,x,y);} var x0=90,y0=165,x1=360,x2=700; node(x0,y0,'Start','#00d5ff'); var pR=r/total,pB=b/total; line(x0+28,y0,x1-28,90,'P(R)='+fmt(pR,3),'#00d5ff'); line(x0+28,y0,x1-28,240,'P(B)='+fmt(pB,3),'#7c3cff'); node(x1,90,'R','#5eead4'); node(x1,240,'B','#facc15'); function p2(first, second){var rr=r, bb=b, tt=total; if(mode==='without'){ if(first==='R')rr--; else bb--; tt--; } if(tt<=0)return 0; return second==='R'?rr/tt:bb/tt;} [['R',90],['B',240]].forEach(function(a){var first=a[0], yy=a[1]; line(x1+28,yy,x2-28,yy-45,'R: '+fmt(p2(first,'R'),3),'#5eead4'); line(x1+28,yy,x2-28,yy+45,'B: '+fmt(p2(first,'B'),3),'#facc15'); node(x2,yy-45,first+'R','#5eead4'); node(x2,yy+45,first+'B','#facc15');}); var rr=pR*p2('R','R'); setHTML($('#urnResult'),'<strong>Beispielpfad RR:</strong> '+formula('P(RR) = '+fmt(rr,4))+' . Im Modus „ohne Zurücklegen“ ändern sich die Wahrscheinlichkeiten auf der zweiten Stufe.');}
+      function drawBinom(){var n=Math.round(num('#binN')), p=num('#binP'), k=Math.round(num('#binK')); $('#binNVal').textContent=fmt(n,0); $('#binPVal').textContent=fmt(p,2); var max=0, probs=[]; for(var i=0;i<=n;i++){var pr=binomP(n,p,i);probs.push(pr);if(pr>max)max=pr;} var yMax=Math.min(1, max*1.18+0.01); var can=$('#binCanvas'),ctx=can.getContext('2d'),W=can.width,H=can.height; var ax=drawAxes(ctx,W,H,{xMin:0,xMax:n,yMin:0,yMax:yMax,xTicks:Math.min(10,Math.max(4,Math.round(n/5))),yTicks:5,xDigits:0,yDigits:2,xLabel:'Trefferzahl k (Anzahl)',yLabel:'Wahrscheinlichkeit P(X=k) (Anteil)'}); var barW=Math.max(2, ax.pw/(n+1)*0.78); ctx.save(); for(var i=0;i<=n;i++){var x=ax.x(i)-barW/2,y=ax.y(probs[i]),h=ax.y(0)-y; ctx.fillStyle=(i===k)?'#facc15':'#00d5ff'; ctx.globalAlpha=(i===k)?1:.72; ctx.fillRect(x,y,barW,h);} ctx.restore(); var mode=$('#binMode').value; var val=mode==='le'?cumLe(n,p,k):mode==='ge'?cumGe(n,p,k):binomP(n,p,k); var text=mode==='le'?'P(X ≤ '+k+')':mode==='ge'?'P(X ≥ '+k+')':'P(X = '+k+')'; setHTML($('#binResult'),'<strong>Ergebnis:</strong> '+formula(text+' = '+fmt(val,5))+' · Erwartungswert '+formula('μ = '+fmt(n*p,2))+' · Standardabweichung '+formula('σ = '+fmt(Math.sqrt(n*p*(1-p)),2))+'.');}
+      function drawTest(){var n=Math.round(num('#testN')), p=clamp(num('#testP'),0.001,0.999), alpha=num('#testAlpha'), side=$('#testSide').value, obs=Math.round(num('#testObs')); var probs=[], max=0; for(var i=0;i<=n;i++){var pr=binomP(n,p,i); probs.push(pr); if(pr>max)max=pr;} var crit=side==='right'?n:0, area=0; if(side==='right'){for(var c=0;c<=n;c++){if(cumGe(n,p,c)<=alpha){crit=c;area=cumGe(n,p,c);break;}}} else {for(var c=n;c>=0;c--){if(cumLe(n,p,c)<=alpha){crit=c;area=cumLe(n,p,c);break;}}} var yMax=Math.min(1,max*1.2+0.01); var can=$('#testCanvas'),ctx=can.getContext('2d'),W=can.width,H=can.height; var ax=drawAxes(ctx,W,H,{xMin:0,xMax:n,yMin:0,yMax:yMax,xTicks:Math.min(10,Math.max(4,Math.round(n/5))),yTicks:5,xDigits:0,yDigits:2,xLabel:'Trefferzahl k unter H₀ (Anzahl)',yLabel:'P(X=k) unter H₀ (Anteil)'}); var bw=Math.max(2, ax.pw/(n+1)*0.78); ctx.save(); for(var i=0;i<=n;i++){var reject=side==='right'?i>=crit:i<=crit; ctx.fillStyle=reject?'#fb7185':'#00d5ff'; ctx.globalAlpha=reject?0.95:0.62; ctx.fillRect(ax.x(i)-bw/2,ax.y(probs[i]),bw,ax.y(0)-ax.y(probs[i]));} ctx.strokeStyle='#facc15'; ctx.lineWidth=3; ctx.beginPath(); ctx.moveTo(ax.x(obs),ax.y(0)); ctx.lineTo(ax.x(obs),ax.y(yMax)); ctx.stroke(); ctx.fillStyle='#facc15'; ctx.font='bold 14px system-ui'; ctx.fillText('beobachtet k='+obs, ax.x(obs)+8, ax.y(yMax)+16); ctx.restore(); var rejectObs=side==='right'?obs>=crit:obs<=crit; setHTML($('#testResult'),'<strong>Kritischer Bereich:</strong> '+(side==='right'?'k ≥ '+crit:'k ≤ '+crit)+' mit Wahrscheinlichkeit '+formula(fmt(area,5))+' unter H₀. Beobachtung k = '+obs+': <strong>'+(rejectObs?'H₀ verwerfen':'H₀ nicht verwerfen')+'</strong>.');}
+      function drawActive(){var active=$('.tab.active'); if(!active)return; var t=active.getAttribute('data-tab'); if(t==='law')drawLaw(); if(t==='events')calcEvents(); if(t==='comb')calcComb(); if(t==='tree')drawTree(); if(t==='binom')drawBinom(); if(t==='test')drawTest();}
+      ['#lawP','#lawN'].forEach(function(id){var el=$(id); if(el)el.addEventListener('input',drawLaw);}); if($('#lawRun'))$('#lawRun').addEventListener('click',drawLaw); ['#setA','#setB'].forEach(function(id){var el=$(id); if(el)el.addEventListener('input',calcEvents);}); if($('#eventCalc'))$('#eventCalc').addEventListener('click',calcEvents); ['#combN','#combK'].forEach(function(id){var el=$(id); if(el)el.addEventListener('input',calcComb);}); if($('#combCalc'))$('#combCalc').addEventListener('click',calcComb); ['#urnR','#urnB','#urnMode'].forEach(function(id){var el=$(id); if(el)el.addEventListener('input',drawTree); if(el)el.addEventListener('change',drawTree);}); if($('#urnCalc'))$('#urnCalc').addEventListener('click',drawTree); ['#binN','#binP','#binK','#binMode'].forEach(function(id){var el=$(id); if(el)el.addEventListener('input',drawBinom); if(el)el.addEventListener('change',drawBinom);}); ['#testN','#testP','#testAlpha','#testSide','#testObs'].forEach(function(id){var el=$(id); if(el)el.addEventListener('input',drawTest); if(el)el.addEventListener('change',drawTest);}); if($('#testCalc'))$('#testCalc').addEventListener('click',drawTest);
+      var openedBeforePrint=[]; window.addEventListener('beforeprint',function(){openedBeforePrint=[]; all('details').forEach(function(d){if(!d.open){openedBeforePrint.push(d);d.open=true;}});}); window.addEventListener('afterprint',function(){openedBeforePrint.forEach(function(d){d.open=false;}); openedBeforePrint=[];});
+      drawLaw(); calcEvents(); calcComb(); drawTree(); drawBinom(); drawTest();
+    })();
+  </script>
+</body>
+</html>
